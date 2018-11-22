@@ -64,7 +64,7 @@ export class ImageBlock extends Block {
         this.stopLoading();
       };
 
-      this.editor.uploadImage(target.files[0], successCallback, failCallback);
+      this.editor.options.uploadImage(target.files[0], successCallback, failCallback);
       this.inputFile.value = '';
     };
 

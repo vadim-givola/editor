@@ -1,9 +1,5 @@
-import { Editor } from './editor/editor'
+import { Editor, EditorOptions } from './editor/editor'
 
-(<any>window).installEditor = (options: any) => {
-  return new Editor(
-    options.elem, 
-    options.uploadImage, 
-    options.content || []
-  )
+(<any>window).installEditor = (elem: HTMLDivElement, options: EditorOptions = (<EditorOptions>{})) => {
+  return new Editor(elem, options);
 };

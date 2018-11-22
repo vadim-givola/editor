@@ -1,12 +1,13 @@
 import { Control } from './control';
-import { Block, RawBlock, BlockReader } from './block/block';
-import { TextBlockReader } from './block/text-block';
+import { Block, BlockReader, RawBlock } from './block/block';
 import { ImageBlockReader } from './block/image-block';
-
+import { TextBlockReader } from './block/text-block';
+import { VideoBlockReader } from './block/video-block';
 
 const BLOCKS: Array<BlockReader> = [
   new TextBlockReader(),
-  new ImageBlockReader()
+  new ImageBlockReader(),
+  new VideoBlockReader()
 ];
 
 function convertRawContent(rawContent: Array<RawBlock>, editor: Editor): Array<Block> {
@@ -30,16 +31,21 @@ function convertRawContent(rawContent: Array<RawBlock>, editor: Editor): Array<B
   return blocks;
 }
 
+export interface EditorOptions {
+  rawBlocks: Array<RawBlock>;
+  uploadImage: (file: File, successCallback: (url: string) => void, failureCallback: (error: string) => void) => void;
+  uploadVideo: (file: File, successCallback: (thumbnailUrl: string, videoUrl: string) => void, failureCallback: (error: string) => void) => void;
+}
+
 export class Editor {
   blocks: Array<Block>;
   lastControl: Control;
 
   constructor(
-    public elem: HTMLDivElement, 
-    public uploadImage: Function, 
-    rawBlocks: Array<RawBlock>
+    public elem: HTMLDivElement,
+    public options: EditorOptions
   ) {
-    this.blocks = convertRawContent(rawBlocks, this);
+    this.blocks = convertRawContent(this.options.rawBlocks || [], this);
     this.render();
   }
 
