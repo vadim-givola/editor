@@ -5,6 +5,7 @@
   <body>
     <div id="editor"></div>
     <button onclick="getContent();">Get raw content</button>
+    <div id="result"></div>
     <script>
       let editor = window.installEditor({
         elem: document.querySelector('#editor'),
@@ -12,7 +13,7 @@
       });
 
       function getContent() {
-        console.log(editor.getContent());
+        document.querySelector('#result').innerHTML = JSON.stringify(editor.getContent());
       }
     </script>
   </body>

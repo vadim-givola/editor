@@ -1,20 +1,25 @@
-import { Block, BlockReader, RawBlock } from './block/block';
-import { TextBlockReader } from './block/text-block';
+import { Block, RawBlock } from './block/block';
+import { TextBlock } from './block/text-block';
 import { Control } from './control';
 
+interface BlockReader {
+  canParse(rawBlock: RawBlock): Boolean
+  parse(rawBlock: RawBlock, editor: Editor): Block
+}
+
 const BLOCKS: Array<BlockReader> = [
-  new TextBlockReader()
+  TextBlock
 ];
 
-function convertRawContent(rawContent: Array<RawBlock>): Array<Block> {
-  let content: Array<Block> = [];
+function convertRawContent(rawContent: Array<RawBlock>, editor: Editor): Array<Block> {
+  let blocks: Array<Block> = [];
 
   for (let rawBlock of rawContent) {
     let processed = false;
     for (let block of BLOCKS) {
-      if (block.type == rawBlock.type) {
+      if (block.canParse(rawBlock)) {
         processed = true;
-        content.push(block.parse(rawBlock));
+        blocks.push(block.parse(rawBlock, editor));
       }
     }
 
@@ -23,37 +28,49 @@ function convertRawContent(rawContent: Array<RawBlock>): Array<Block> {
     }
   }
 
-  return content;
+  return blocks;
 }
 
 export class Editor {
-  content: Array<Block>;
-  control: Control;
+  blocks: Array<Block>;
+  lastControl: Control;
 
-  constructor(public elem: HTMLDivElement, rawContent: Array<RawBlock>) {
-    this.content = convertRawContent(rawContent);
+  constructor(public elem: HTMLDivElement, rawBlocks: Array<RawBlock>) {
+    this.blocks = convertRawContent(rawBlocks, this);
     this.render();
   }
 
-  add(block: Block) {
-    this.content.push(block);
-    this.elem.insertBefore(block.elem, this.control.elem);
+  add(block: Block, beforeBlock: Block) {
+    if (beforeBlock) {
+      for (let i=0;i < this.blocks.length;i++) {
+        if (beforeBlock == this.blocks[i]) {
+          this.blocks.splice(i, 0, block);
+          break;
+        }
+      }
+      this.elem.insertBefore(block.elem, beforeBlock.elem);
+    } else {
+      this.blocks.push(block);
+      this.elem.insertBefore(block.elem, this.lastControl.elem);
+    }
+
+    block.focus();
   }
 
   getContent(): Array<RawBlock> {
     let rawContent: Array<RawBlock> = [];
-    for (let block of this.content) {
+    for (let block of this.blocks) {
       rawContent.push(block.getRawContent());
     }
     return rawContent;
   }
 
   private render() {
-    for (let block of this.content) {
+    for (let block of this.blocks) {
       this.elem.appendChild(block.elem);
     }
     
-    this.control = new Control(this);
-    this.elem.appendChild(this.control.elem);
+    this.lastControl = new Control(this, null);
+    this.elem.appendChild(this.lastControl.elem);
   }
 }
