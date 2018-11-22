@@ -1,14 +1,12 @@
-import { Block, RawBlock } from './block/block';
-import { TextBlock } from './block/text-block';
 import { Control } from './control';
+import { Block, RawBlock, BlockReader } from './block/block';
+import { TextBlockReader } from './block/text-block';
+import { ImageBlockReader } from './block/image-block';
 
-interface BlockReader {
-  canParse(rawBlock: RawBlock): Boolean
-  parse(rawBlock: RawBlock, editor: Editor): Block
-}
 
 const BLOCKS: Array<BlockReader> = [
-  TextBlock
+  new TextBlockReader(),
+  new ImageBlockReader()
 ];
 
 function convertRawContent(rawContent: Array<RawBlock>, editor: Editor): Array<Block> {
@@ -20,11 +18,12 @@ function convertRawContent(rawContent: Array<RawBlock>, editor: Editor): Array<B
       if (block.canParse(rawBlock)) {
         processed = true;
         blocks.push(block.parse(rawBlock, editor));
+        break;
       }
     }
 
     if (!processed) {
-      console.warn(`Unrecognized block type: ${rawBlock.type}`);
+      console.warn(`Unrecognized block type: '${rawBlock.type}'. Ignore.`);
     }
   }
 
@@ -35,7 +34,11 @@ export class Editor {
   blocks: Array<Block>;
   lastControl: Control;
 
-  constructor(public elem: HTMLDivElement, rawBlocks: Array<RawBlock>) {
+  constructor(
+    public elem: HTMLDivElement, 
+    public uploadImage: Function, 
+    rawBlocks: Array<RawBlock>
+  ) {
     this.blocks = convertRawContent(rawBlocks, this);
     this.render();
   }

@@ -1,24 +1,24 @@
 import { Editor } from '../editor';
-import { Block, RawBlock } from './block'
+import { Block, RawBlock, BlockReader } from './block'
 
-const TYPE = 'text';
+const TYPE: string = 'text';
 
 interface RawTextBlock extends RawBlock {
   content: string;
 }
 
-export class TextBlock extends Block {
-
-  static readonly type: string = 'text';
-
-  static canParse(rawBlock: RawBlock): Boolean {
-    return rawBlock.type == TextBlock.type;
+export class TextBlockReader implements BlockReader {
+  canParse(rawBlock: RawBlock): Boolean {
+    return rawBlock.type == TYPE;
   }
 
-  static parse(rawBlock: RawBlock, editor: Editor): Block {
+  parse(rawBlock: RawBlock, editor: Editor): Block {
     let rawTextBlock = rawBlock as RawTextBlock;
     return new TextBlock(editor, rawTextBlock.content);
   }
+}
+
+export class TextBlock extends Block {
 
   textarea: HTMLTextAreaElement = document.createElement('textarea');
 
@@ -26,7 +26,7 @@ export class TextBlock extends Block {
     super(editor);
     this.elem.classList.add('editor-block__text');
     this.elem.appendChild(this.textarea);
-    
+
     this.textarea.innerHTML = this.content;
   }
 
@@ -36,7 +36,7 @@ export class TextBlock extends Block {
 
   getRawContent(): RawBlock {
     let raw: RawTextBlock = {
-      type: TextBlock.type,
+      type: TYPE,
       content: this.textarea.value
     };
     return raw;

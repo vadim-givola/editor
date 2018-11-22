@@ -5,6 +5,11 @@ export interface RawBlock {
   type: string;
 }
 
+export interface BlockReader {
+  canParse(rawBlock: RawBlock): Boolean
+  parse(rawBlock: RawBlock, editor: Editor): Block
+}
+
 export abstract class Block {
   elem: HTMLDivElement = document.createElement('div');
   control: Control;

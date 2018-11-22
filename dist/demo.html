@@ -7,8 +7,32 @@
     <button onclick="getContent();">Get raw content</button>
     <div id="result"></div>
     <script>
+      let cloudinaryCloudName = 'dkft0mpzt';
+      let cloudinaryUnsignedUploadName = 'brrw7cfx';
       let editor = window.installEditor({
         elem: document.querySelector('#editor'),
+        uploadImage: function(file, successCallback, failureCallback) {
+          let url = `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/upload`;
+          let xhr = new XMLHttpRequest();
+          let fd = new FormData();
+          xhr.open('POST', url, true);
+          xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+          xhr.onreadystatechange = (e) => {
+            if (xhr.readyState == 4) {
+              if (xhr.status == 200) {
+                let response = JSON.parse(xhr.responseText);
+                successCallback(`https://res.cloudinary.com/${cloudinaryCloudName}/image/upload/${response.public_id}.jpg`);
+              } else {
+                failureCallback(e);
+              }
+            }
+          };
+
+          fd.append('upload_preset', cloudinaryUnsignedUploadName);
+          fd.append('file', file);
+          xhr.send(fd);
+        },
         content: []
       });
 
