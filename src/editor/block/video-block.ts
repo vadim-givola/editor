@@ -4,8 +4,7 @@ import { Block, RawBlock, BlockReader } from './block'
 const TYPE: string = 'video';
 
 interface RawVideoBlock extends RawBlock {
-  thumbnailUrl: string;
-  videoUrl: string;
+  url: string;
 }
 
 export class VideoBlockReader implements BlockReader {
@@ -15,7 +14,7 @@ export class VideoBlockReader implements BlockReader {
 
   parse(rawBlock: RawBlock, editor: Editor): Block {
     let rawVideoBlock = rawBlock as RawVideoBlock;
-    return new VideoBlock(editor, rawVideoBlock.thumbnailUrl, rawVideoBlock.videoUrl);
+    return new VideoBlock(editor, rawVideoBlock.url);
   }
 }
 
@@ -29,7 +28,7 @@ export class VideoBlock extends Block {
   videoPanel: HTMLDivElement = document.createElement('div');
   videoElem: HTMLVideoElement = document.createElement('video');
 
-  constructor(public editor: Editor, public thumbnailUrl: string, public videoUrl: string) {
+  constructor(public editor: Editor, public videoUrl: string) {
     super(editor);
     this.elem.classList.add('editor-block__video');
 
@@ -43,7 +42,6 @@ export class VideoBlock extends Block {
     this.uploadPanel.appendChild(this.loadingIcon);
 
     this.videoElem.controls = true;
-    this.loadingIcon.innerHTML = 'Uploading video...'
     this.stopLoading();
     this.uploadButton.innerHTML = 'Upload video';
     this.uploadButton.onclick = () => { this.inputFile.click() }
@@ -57,9 +55,16 @@ export class VideoBlock extends Block {
 
       this.startLoading();
 
-      let successCallback = (thumbnailUrl: string, videoUrl: string) => {
+      let progressCallback = (loaded: Number, total: Number, label: string) => {
+        if (label) {
+          this.loadingIcon.innerHTML = label;
+        } else {
+          this.loadingIcon.innerHTML = `Uploading video (${loaded}/${total})...`;
+        }
+      }
+
+      let successCallback = (videoUrl: string) => {
         this.stopLoading();
-        this.thumbnailUrl = thumbnailUrl;
         this.videoUrl = videoUrl;
         this.updateView();
       };
@@ -68,7 +73,7 @@ export class VideoBlock extends Block {
         this.stopLoading();
       };
 
-      this.editor.options.uploadVideo(target.files[0], successCallback, failCallback);
+      this.editor.options.uploadVideo(target.files[0], progressCallback, successCallback, failCallback);
       this.inputFile.value = '';
     };
 
@@ -76,6 +81,7 @@ export class VideoBlock extends Block {
   }
 
   startLoading(): void {
+    this.loadingIcon.innerHTML = 'Uploading video...'
     this.loadingIcon.style.display = 'inline-block';
   }
 
@@ -86,7 +92,6 @@ export class VideoBlock extends Block {
   updateView(): void {
     if (this.videoUrl) {
       this.videoElem.src = this.videoUrl;
-      this.videoElem.poster = this.thumbnailUrl;
       this.videoPanel.style.display = 'block';
       this.uploadPanel.style.display = 'none';
     } else {
@@ -100,8 +105,7 @@ export class VideoBlock extends Block {
   getRawContent(): RawBlock {
     let raw: RawVideoBlock = {
       type: TYPE,
-      thumbnailUrl: this.thumbnailUrl,
-      videoUrl: this.videoUrl,
+      url: this.videoUrl,
     };
     return raw;
   }

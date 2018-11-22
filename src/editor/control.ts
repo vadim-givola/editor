@@ -39,7 +39,7 @@ export class Control {
       this.videoButton.classList.add('editor-control__video-button')
       this.videoButton.innerHTML = 'Add video';
       this.videoButton.onclick = () => {
-        editor.add(new VideoBlock(editor, '', ''), this.block);
+        editor.add(new VideoBlock(editor, ''), this.block);
       };
     }
   }
