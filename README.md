@@ -5,8 +5,7 @@ Editor
 Requirement
 ------------
 
-* NPM
-* Webpack
+* npm
 
 
 Develop
