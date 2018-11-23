@@ -15,7 +15,7 @@ const webDriver = new Builder()
         "--disable-gpu", 
         "--window-size=470,640"
       )
-      // .headless()
+      .headless()
   )
   .build();
 
