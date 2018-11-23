@@ -32,7 +32,7 @@ function convertRawContent(rawContent: Array<RawBlock>, editor: Editor): Array<B
 }
 
 export interface EditorOptions {
-  rawBlocks: Array<RawBlock>;
+  content: Array<RawBlock>;
   uploadImage: (file: File, successCallback: (url: string) => void, failureCallback: (error: string) => void) => void;
   uploadVideo: (file: File, progressCallback: (loaded: Number, total: Number, label: String) => void, successCallback: (thumbnailUrl: string, videoUrl: string) => void, failureCallback: (error: string) => void) => void;
 }
@@ -45,7 +45,7 @@ export class Editor {
     public elem: HTMLDivElement,
     public options: EditorOptions
   ) {
-    this.blocks = convertRawContent(this.options.rawBlocks || [], this);
+    this.blocks = convertRawContent(this.options.content, this);
     this.render();
   }
 
