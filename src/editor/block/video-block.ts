@@ -31,6 +31,8 @@ export class VideoBlock extends Block {
   constructor(public editor: Editor, public videoUrl: string) {
     super(editor);
     this.elem.classList.add('editor-block__video');
+    this.uploadButton.classList.add('editor-block__video__upload-button');
+    this.videoElem.classList.add('editor-block__video__video-elem')
 
     this.elem.appendChild(this.uploadPanel);
     this.elem.appendChild(this.videoPanel);

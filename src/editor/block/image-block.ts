@@ -31,6 +31,8 @@ export class ImageBlock extends Block {
   constructor(public editor: Editor, public url: string) {
     super(editor);
     this.elem.classList.add('editor-block__image');
+    this.img.classList.add('editor-block__image__img');
+    this.uploadButton.classList.add('editor-block__image__upload-button');
 
     this.elem.appendChild(this.uploadPanel);
     this.elem.appendChild(this.imagePanel);

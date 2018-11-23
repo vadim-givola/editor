@@ -4,8 +4,8 @@
   </head>
   <body>
     <div id="editor"></div>
-    <button onclick="getContent();">Get raw content</button>
-    <div id="result"></div>
+    <button id="getRawContentButton" onclick="getContent();">Get raw content</button>
+    <div id="rawContent"></div>
     <script>
       let cloudinaryCloudName = 'dkft0mpzt';
       let cloudinaryUnsignedUploadName = 'brrw7cfx';
@@ -82,7 +82,7 @@
       );
 
       function getContent() {
-        document.querySelector('#result').innerHTML = JSON.stringify(editor.getContent());
+        document.querySelector('#rawContent').innerHTML = JSON.stringify(editor.getContent());
       }
     </script>
   </body>
