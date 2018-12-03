@@ -28,6 +28,10 @@ class Elements {
 
   }
 
+  async size(): promise.Promise<number> {
+    return (await this.elems).length;
+  }
+
   async click(index: number): promise.Promise<void> {
     return (await this.elems)[index].click();
   }

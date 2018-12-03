@@ -1,5 +1,5 @@
-import { Editor } from '../editor';
-import { Block, RawBlock, BlockReader } from './block'
+import {Editor} from '../editor';
+import {Block, RawBlock, BlockReader} from './block'
 
 const TYPE: string = 'text';
 

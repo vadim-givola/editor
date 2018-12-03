@@ -1,20 +1,22 @@
-import { Block } from './block/block';
-import { ImageBlock } from './block/image-block';
-import { TextBlock } from './block/text-block';
-import { VideoBlock } from './block/video-block';
-import { Editor } from './editor';
+import {Block} from './block/block';
+import {ImageBlock} from './block/image-block';
+import {TextBlock} from './block/text-block';
+import {VideoBlock} from './block/video-block';
+import {Editor} from './editor';
+import {YoutubeBlock} from "./block/youtube-block";
 
 export class Control {
   elem: HTMLDivElement = document.createElement('div');
   textButton: HTMLSpanElement = document.createElement('span');
   imageButton: HTMLSpanElement;
   videoButton: HTMLSpanElement;
+  youtubeButton: HTMLSpanElement = document.createElement('span');
 
   constructor(public editor: Editor, public block: Block) {
-    this.elem.appendChild(this.textButton);
 
     this.elem.classList.add('editor-control');
 
+    this.elem.appendChild(this.textButton);
     this.textButton.classList.add('editor-control__text-button')
     this.textButton.innerHTML = 'Add text';
     this.textButton.onclick = () => {
@@ -31,6 +33,13 @@ export class Control {
         editor.add(new ImageBlock(editor, ''), this.block);
       };
     }
+
+    this.elem.appendChild(this.youtubeButton);
+    this.youtubeButton.classList.add('editor-control__youtube-button')
+    this.youtubeButton.innerHTML = 'Add Youtube video';
+    this.youtubeButton.onclick = () => {
+      editor.add(new YoutubeBlock(editor, ''), this.block);
+    };
 
     if (this.editor.options.uploadVideo) {
       this.videoButton = document.createElement('span');

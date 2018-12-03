@@ -1,13 +1,15 @@
-import { Control } from './control';
-import { Block, BlockReader, RawBlock } from './block/block';
-import { ImageBlockReader } from './block/image-block';
-import { TextBlockReader } from './block/text-block';
-import { VideoBlockReader } from './block/video-block';
+import {Control} from './control';
+import {Block, BlockReader, RawBlock} from './block/block';
+import {ImageBlockReader} from './block/image-block';
+import {TextBlockReader} from './block/text-block';
+import {VideoBlockReader} from './block/video-block';
+import {YoutubeBlockReader} from './block/youtube-block';
 
 const BLOCKS: Array<BlockReader> = [
   new TextBlockReader(),
   new ImageBlockReader(),
-  new VideoBlockReader()
+  new VideoBlockReader(),
+  new YoutubeBlockReader(),
 ];
 
 function convertRawContent(rawContent: Array<RawBlock>, editor: Editor): Array<Block> {

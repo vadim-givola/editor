@@ -1,14 +1,19 @@
-import { Options } from 'selenium-webdriver/chrome'
 import * as path from 'path'
-import { sleep, msleep } from 'sleep'
-import { Builder, By } from 'selenium-webdriver'
-import { Browser } from './helper'
+import {Browser} from './helper'
 
 
 test('fills textbox, uploads an image, and uploads a video', async () => {
   await Browser.go('dist/demo.html');
   await Browser.find('.editor-control__text-button').click();
   await Browser.find('.editor-block__text textarea').fill('middle');
+
+  await Browser.findAll('.editor-control__youtube-button').click(1);
+  await Browser.find('.editor-block__youtube input[type=text]').fill("https://www.youtube.com/watch?v=J_rfmXdRAxY")
+  await Browser.waitUntil(async () => {
+    return (await Browser.findAll(".editor-block__youtube__img").size()) > 0
+  });
+  expect(await Browser.find('.editor-block__youtube__img').getAttribute("src")).toContain("J_rfmXdRAxY");
+  expect(await Browser.find('.editor-block__youtube__img').isDisplayed()).toBe(true);
 
   await Browser.findAll('.editor-control__image-button').click(0);
   await Browser.find('.editor-block__image__upload-button').isDisplayed();
@@ -34,6 +39,7 @@ test('fills textbox, uploads an image, and uploads a video', async () => {
       {type: 'image', url: imageUrl},
       {type: 'text', content: 'middle'},
       {type: 'video', url: videoUrl},
+      {type: 'youtube', url: "https://www.youtube.com/watch?v=J_rfmXdRAxY"},
     ]
   );
 })

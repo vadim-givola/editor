@@ -1,5 +1,5 @@
-import { Control } from '../control';
-import { Editor } from '../editor';
+import {Control} from '../control';
+import {Editor} from '../editor';
 
 export interface RawBlock {
   type: string;
