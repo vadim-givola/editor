@@ -39,9 +39,6 @@ export class YoutubeBlock extends Block {
     this.inputText.onchange = (event: Event): any => {
       this.updateView();
     };
-    this.inputText.onkeyup = (event: Event): any => {
-      this.updateView();
-    };
 
     this.updateView();
   }

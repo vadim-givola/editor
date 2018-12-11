@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "webpack && jest",
-    "start": "webpack-dev-server --open",
-    "build": "webpack"
+    "test": "npm run build && jest",
+    "start": "npm-run-all --parallel start:**",
+    "start:js": "webpack-dev-server --open",
+    "start:css": "./node_modules/.bin/node-sass -w -r src/scss/index.scss dist/editor.css",
+    "build": "npm-run-all build:**",
+    "build:js": "webpack",
+    "build:css": "./node_modules/.bin/node-sass src/scss/index.scss dist/editor.css"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +20,8 @@
     "@types/selenium-webdriver": "^3.0.13",
     "@types/sleep": "0.0.7",
     "jest": "^23.6.0",
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
     "selenium-webdriver": "^4.0.0-alpha.1",
     "sleep": "^5.2.3",
     "ts-jest": "^23.10.5",

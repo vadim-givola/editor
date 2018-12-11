@@ -8,7 +8,7 @@ test('fills textbox, uploads an image, and uploads a video', async () => {
   await Browser.find('.editor-block__text textarea').fill('middle');
 
   await Browser.findAll('.editor-control__youtube-button').click(1);
-  await Browser.find('.editor-block__youtube input[type=text]').fill("https://www.youtube.com/watch?v=J_rfmXdRAxY")
+  await Browser.find('.editor-block__youtube input[type=text]').fill("https://www.youtube.com/watch?v=J_rfmXdRAxY\n") // \n triggers the onchange event.
   await Browser.waitUntil(async () => {
     return (await Browser.findAll(".editor-block__youtube__img").size()) > 0
   });
