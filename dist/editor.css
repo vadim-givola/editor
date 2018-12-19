@@ -1,3 +1,24 @@
+.editor-block {
+  border-bottom: dashed 1px #eeeeee;
+  color: #333333;
+  font-family: SourceSansPro;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  line-height: 1.5;
+  padding-bottom: 10px;
+  padding-top: 10px; }
+  .editor-block__editor {
+    width: 100%;
+    box-shadow: none;
+    border: 0;
+    outline: none;
+    overflow: hidden;
+    resize: none; }
+  .editor-block__header {
+    font-size: 20px;
+    font-weight: 600; }
+
 .test {
   display: none; }
 

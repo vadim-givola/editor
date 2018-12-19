@@ -1,5 +1,6 @@
 import {Block} from './block/block';
 import {ImageBlock} from './block/image-block';
+import {HeaderBlock} from './block/header-block';
 import {TextBlock} from './block/text-block';
 import {VideoBlock} from './block/video-block';
 import {Editor} from './editor';
@@ -7,6 +8,7 @@ import {YoutubeBlock} from "./block/youtube-block";
 
 export class Control {
   elem: HTMLDivElement = document.createElement('div');
+  headerButton: HTMLSpanElement = document.createElement('span');
   textButton: HTMLSpanElement = document.createElement('span');
   imageButton: HTMLSpanElement;
   videoButton: HTMLSpanElement;
@@ -15,6 +17,13 @@ export class Control {
   constructor(public editor: Editor, public block: Block) {
 
     this.elem.classList.add('editor-control');
+
+    this.elem.appendChild(this.headerButton);
+    this.headerButton.classList.add('editor-control__header-button')
+    this.headerButton.innerHTML = 'Add header';
+    this.headerButton.onclick = () => {
+        editor.add(new HeaderBlock(editor, ''), this.block);
+    };
 
     this.elem.appendChild(this.textButton);
     this.textButton.classList.add('editor-control__text-button')
