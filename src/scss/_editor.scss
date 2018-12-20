@@ -1,11 +1,14 @@
 $color--black: rgb(51, 51, 51);
+$color--brownish-grey: rgb(102, 102, 102);
 $color--white-outline: rgb(238, 238, 238);
 
+$font-weight--light: 300;
 $font-weight--normal: 400;
 $font-weight--bold: 600;
 
-$font-size--text: 16px;
+$font-size--body: 16px;
 $font-size--header: 20px;
+$font-size--quote: 30px;
 
 .editor-block {
   border-bottom: dashed 1px $color--white-outline;
@@ -30,6 +33,19 @@ $font-size--header: 20px;
   &__header {
     font-size: $font-size--header;
     font-weight: $font-weight--bold;
+  }
+
+  &__body {
+    font-size: $font-size--body;
+    font-weight: $font-weight--normal;
+  }
+
+  &__quote {
+    border-left: solid 2px $color--white-outline;
+    color: $color--brownish-grey;
+    font-size: $font-size--quote;
+    font-weight: $font-weight--light;
+    padding-left: 20px;
   }
 }
 

@@ -1,5 +1,6 @@
 import {Block} from './block/block';
 import {ImageBlock} from './block/image-block';
+import {QuoteBlock} from './block/quote-block';
 import {HeaderBlock} from './block/header-block';
 import {TextBlock} from './block/text-block';
 import {VideoBlock} from './block/video-block';
@@ -8,6 +9,7 @@ import {YoutubeBlock} from "./block/youtube-block";
 
 export class Control {
   elem: HTMLDivElement = document.createElement('div');
+  quoteButton: HTMLSpanElement = document.createElement('span');
   headerButton: HTMLSpanElement = document.createElement('span');
   textButton: HTMLSpanElement = document.createElement('span');
   imageButton: HTMLSpanElement;
@@ -17,6 +19,13 @@ export class Control {
   constructor(public editor: Editor, public block: Block) {
 
     this.elem.classList.add('editor-control');
+
+    this.elem.appendChild(this.quoteButton);
+    this.quoteButton.classList.add('editor-control__quote-button')
+    this.quoteButton.innerHTML = 'Add quote';
+    this.quoteButton.onclick = () => {
+      editor.add(new QuoteBlock(editor, ''), this.block);
+    };
 
     this.elem.appendChild(this.headerButton);
     this.headerButton.classList.add('editor-control__header-button')

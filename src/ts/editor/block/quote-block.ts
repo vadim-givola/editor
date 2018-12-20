@@ -3,22 +3,22 @@ import {Block, RawBlock, BlockReader} from './block'
 
 const TYPE: string = 'text';
 
-interface RawTextBlock extends RawBlock {
+interface RawQuoteBlock extends RawBlock {
   content: string;
 }
 
-export class TextBlockReader implements BlockReader {
+export class QuoteBlockReader implements BlockReader {
   canParse(rawBlock: RawBlock): Boolean {
     return rawBlock.type == TYPE;
   }
 
   parse(rawBlock: RawBlock, editor: Editor): Block {
-    let rawTextBlock = rawBlock as RawTextBlock;
-    return new TextBlock(editor, rawTextBlock.content);
+    let rawQuoteBlock = rawBlock as RawQuoteBlock;
+    return new QuoteBlock(editor, rawQuoteBlock.content);
   }
 }
 
-export class TextBlock extends Block {
+export class QuoteBlock extends Block {
 
   textarea: HTMLTextAreaElement = document.createElement('textarea');
 
@@ -27,7 +27,7 @@ export class TextBlock extends Block {
     this.elem.classList.add('editor-block__text');
     this.elem.appendChild(this.textarea);
 
-    this.textarea.classList.add('editor-block__editor', 'editor-block__body');
+    this.textarea.classList.add('editor-block__editor', 'editor-block__quote');
     this.textarea.setAttribute('rows', '1');
     this.textarea.addEventListener('input', function() {
       if (this.textarea.scrollHeight > this.textarea.clientHeight) {
@@ -43,7 +43,7 @@ export class TextBlock extends Block {
   }
 
   getRawContent(): RawBlock {
-    let raw: RawTextBlock = {
+    let raw: RawQuoteBlock = {
       type: TYPE,
       content: this.textarea.value
     };
