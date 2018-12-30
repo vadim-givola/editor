@@ -21,8 +21,8 @@ test('fills textbox, uploads an image, and uploads a video', async () => {
   await Browser.driver.executeScript("window.scrollTo(0, document.body.scrollHeight)");
   await Browser.findAll('.js-expand-handle').click(2);
   await Browser.findAll('.js-image-button').click(2);
-  await Browser.find('.editor-block__image__upload-button').isDisplayed();
-  await Browser.find('.editor-block__image input[type=file]').elem.sendKeys(path.resolve(__dirname, 'test.png'));
+  await Browser.find('.editor-block__image__upload-panel__button').isDisplayed();
+  await Browser.find('.editor-block__image__upload-panel__input').elem.sendKeys(path.resolve(__dirname, 'test.png'));
   await Browser.waitUntil(() => { return Browser.find('.editor-block__image__img').isDisplayed() });
  
   let imageUrl = await Browser.find('.editor-block__image__img').getAttribute('src');

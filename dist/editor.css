@@ -62,6 +62,23 @@
     outline: none;
     overflow: hidden;
     resize: none; }
+  .editor-block__image__upload-panel {
+    background-color: #f4f4f4;
+    border: solid 1px #eeeeee;
+    border-radius: 4px;
+    color: #333333;
+    cursor: pointer;
+    padding: 120px 30%;
+    text-align: center; }
+    .editor-block__image__upload-panel--active {
+      background-color: #eeeeee; }
+    .editor-block__image__upload-panel__input {
+      display: none; }
+    .editor-block__image__upload-panel__button {
+      display: none; }
+  .editor-block__image__img {
+    border-radius: 4px;
+    max-width: 100%; }
   .editor-block__header {
     font-size: 20px;
     font-weight: 600; }
