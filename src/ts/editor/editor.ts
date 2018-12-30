@@ -70,6 +70,7 @@ export class Editor {
     }
 
     block.focus();
+    block.control.expandDashboard();
   }
 
   getContent(): Array<RawBlock> {

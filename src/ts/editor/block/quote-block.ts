@@ -1,7 +1,7 @@
 import {Editor} from '../editor';
 import {Block, RawBlock, BlockReader} from './block'
 
-const TYPE: string = 'text';
+const TYPE: string = 'quote';
 
 interface RawQuoteBlock extends RawBlock {
   content: string;

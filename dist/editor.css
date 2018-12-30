@@ -1,7 +1,54 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600");
+.editor-control {
+  font-family: 'Source Sans Pro', sans-serif;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  position: relative; }
+  .editor-control__expand-handle {
+    border-top: dashed 2px #eeeeee;
+    padding: 10px 0 5px 0;
+    cursor: pointer; }
+    .editor-control__expand-handle__button {
+      background-color: #ec7070;
+      border-radius: 50%;
+      color: white;
+      display: none;
+      font-weight: 600;
+      height: 25px;
+      left: 0;
+      line-height: 25px;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      width: 25px; }
+    .editor-control__expand-handle:hover {
+      border-top: solid 2px #ec7070; }
+      .editor-control__expand-handle:hover .editor-control__expand-handle__button {
+        display: block; }
+  .editor-control__dashboard {
+    display: flex;
+    max-height: 0;
+    padding: 0 10px;
+    overflow: hidden; }
+    .editor-control__dashboard__button {
+      border-radius: 8px;
+      color: #666666;
+      cursor: pointer;
+      flex: 1;
+      font-size: 12px;
+      margin: 5px 0 10px 0;
+      padding: 15px;
+      text-align: center; }
+      .editor-control__dashboard__button:hover {
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1); }
+      .editor-control__dashboard__button svg {
+        height: 30px; }
+      .editor-control__dashboard__button p {
+        margin-top: 5px; }
+
 .editor-block {
-  border-bottom: dashed 1px #eeeeee;
   color: #333333;
-  font-family: SourceSansPro;
+  font-family: 'Source Sans Pro', sans-serif;
   font-style: normal;
   font-stretch: normal;
   letter-spacing: normal;
