@@ -1,7 +1,5 @@
 import * as path from 'path'
 import {Browser} from './helper'
-import { msleep } from 'sleep';
-
 
 test('fills textbox, uploads an image, and uploads a video', async () => {
   await Browser.go('dist/demo.html');
@@ -10,13 +8,13 @@ test('fills textbox, uploads an image, and uploads a video', async () => {
   await Browser.find('.editor-block__body').fill('middle');
 
   await Browser.findAll('.js-expand-handle').click(0);
-  await Browser.findAll('.js-youtube-button').click(0);
-  await Browser.find('.editor-block__youtube input[type=text]').fill("https://www.youtube.com/watch?v=J_rfmXdRAxY\n") // \n triggers the onchange event.
+  await Browser.findAll('.js-video-button').click(0);
+  await Browser.find('.editor-block__video__upload-panel__input-container__input').fill("https://www.youtube.com/watch?v=J_rfmXdRAxY\n") // \n triggers the onchange event.
   await Browser.waitUntil(async () => {
-    return (await Browser.findAll(".editor-block__youtube__img").size()) > 0
+    return (await Browser.findAll(".js-video-iframe").size()) > 0
   });
-  expect(await Browser.find('.editor-block__youtube__img').getAttribute("src")).toContain("J_rfmXdRAxY");
-  expect(await Browser.find('.editor-block__youtube__img').isDisplayed()).toBe(true);
+  expect(await Browser.find('.js-video-iframe').getAttribute("src")).toContain("J_rfmXdRAxY");
+  expect(await Browser.find('.js-video-iframe').isDisplayed()).toBe(true);
 
   await Browser.driver.executeScript("window.scrollTo(0, document.body.scrollHeight)");
   await Browser.findAll('.js-expand-handle').click(2);
@@ -27,15 +25,6 @@ test('fills textbox, uploads an image, and uploads a video', async () => {
  
   let imageUrl = await Browser.find('.editor-block__image__img').getAttribute('src');
   expect(imageUrl).toContain('cloudinary');
-
-  // await Browser.findAll('.editor-control__video-button').click(2);
-  // await Browser.find('.editor-block__video__upload-button').isDisplayed();
-  // await Browser.find('.editor-block__video input[type=file]').elem.sendKeys(path.resolve(__dirname, 'test.mp4'));
-  // await Browser.waitUntil(() => { return Browser.find('.editor-block__video__video-elem').isDisplayed() });
-
-  // let videoUrl = await Browser.find('.editor-block__video__video-elem').getAttribute('src');
-  // expect(videoUrl).toContain('cloudinary');
-  // expect(videoUrl).toContain('/vc_auto/'); // important codec to make it suitable for web
 
   await Browser.driver.executeScript("window.scrollTo(0, document.body.scrollHeight)");
   await Browser.findAll('.js-expand-handle').click(3);
@@ -52,7 +41,7 @@ test('fills textbox, uploads an image, and uploads a video', async () => {
 
   expect(JSON.parse(await Browser.find('#rawContent').getText())).toEqual(
     [
-      {type: 'youtube', url: "https://www.youtube.com/watch?v=J_rfmXdRAxY"},
+      {type: 'video', url: "https://www.youtube.com/watch?v=J_rfmXdRAxY"},
       {type: 'text', content: 'middle'},
       // {type: 'video', url: videoUrl},
       {type: 'image', url: imageUrl},

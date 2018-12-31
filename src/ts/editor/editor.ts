@@ -5,7 +5,6 @@ import {QuoteBlockReader} from './block/quote-block';
 import {HeaderBlockReader} from './block/header-block';
 import {TextBlockReader} from './block/text-block';
 import {VideoBlockReader} from './block/video-block';
-import {YoutubeBlockReader} from './block/youtube-block';
 
 const BLOCKS: Array<BlockReader> = [
   new TextBlockReader(),
@@ -13,7 +12,6 @@ const BLOCKS: Array<BlockReader> = [
   new QuoteBlockReader(),
   new ImageBlockReader(),
   new VideoBlockReader(),
-  new YoutubeBlockReader(),
 ];
 
 function convertRawContent(rawContent: Array<RawBlock>, editor: Editor): Array<Block> {
