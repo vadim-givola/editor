@@ -1,4 +1,4 @@
-  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 
 $color--black: rgb(51, 51, 51);
 $color--brownish-grey: rgb(102, 102, 102);
@@ -24,7 +24,7 @@ $font-size--quote: 30px;
 
   &__expand-handle {
     border-top: dashed 2px $color--white-outline;
-    padding: 10px 0 5px 0;
+    padding: 5px 0;
     cursor: pointer;
 
     &__button {
@@ -54,7 +54,7 @@ $font-size--quote: 30px;
   &__dashboard {
     display: flex;
     max-height: 0;
-    padding: 0 10px;
+    padding: 0 5px;
     overflow: hidden;
 
     &__button {
@@ -64,7 +64,7 @@ $font-size--quote: 30px;
       flex: 1;
       font-size: $font-size--button;
       margin: 5px 0 10px 0;
-      padding: 15px;
+      padding: 10px;
       text-align: center;
 
       &:hover {

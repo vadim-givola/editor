@@ -6,7 +6,7 @@
   position: relative; }
   .editor-control__expand-handle {
     border-top: dashed 2px #eeeeee;
-    padding: 10px 0 5px 0;
+    padding: 5px 0;
     cursor: pointer; }
     .editor-control__expand-handle__button {
       background-color: #ec7070;
@@ -28,7 +28,7 @@
   .editor-control__dashboard {
     display: flex;
     max-height: 0;
-    padding: 0 10px;
+    padding: 0 5px;
     overflow: hidden; }
     .editor-control__dashboard__button {
       border-radius: 8px;
@@ -37,7 +37,7 @@
       flex: 1;
       font-size: 12px;
       margin: 5px 0 10px 0;
-      padding: 15px;
+      padding: 10px;
       text-align: center; }
       .editor-control__dashboard__button:hover {
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1); }

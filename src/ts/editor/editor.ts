@@ -86,5 +86,6 @@ export class Editor {
     
     this.lastControl = new Control(this, null);
     this.elem.appendChild(this.lastControl.elem);
+    this.lastControl.expandDashboard();
   }
 }
