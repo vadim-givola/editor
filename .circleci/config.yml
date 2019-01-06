@@ -21,4 +21,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
         
-      - run: npm test
+      - run:
+          name: "Run tests"
+          command: npm test
+      - run:
+          name: "Check if the production artifacts (e.g. dist/editor.min.js) are the latest one"
+          command: ./.circleci/checksum.sh

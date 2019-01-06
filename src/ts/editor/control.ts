@@ -6,6 +6,7 @@ import {TextBlock} from './block/text-block';
 import {Editor} from './editor';
 import {VideoBlock} from "./block/video-block";
 
+
 export class Control {
   elem: HTMLDivElement = document.createElement('div');
   dashboard: HTMLDivElement = document.createElement('div');

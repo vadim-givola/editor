@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600");
+.editor-control {
+  font-family: 'Source Sans Pro', sans-serif;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  position: relative; }
+  .editor-control__expand-handle {
+    border-top: dashed 2px #eeeeee;
+    padding: 5px 0;
+    cursor: pointer; }
+    .editor-control__expand-handle__button {
+      background-color: #ec7070;
+      border-radius: 50%;
+      color: white;
+      display: none;
+      font-weight: 600;
+      height: 25px;
+      left: 0;
+      line-height: 25px;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      width: 25px; }
+    .editor-control__expand-handle:hover {
+      border-top: solid 2px #ec7070; }
+      .editor-control__expand-handle:hover .editor-control__expand-handle__button {
+        display: block; }
+  .editor-control__dashboard {
+    display: flex;
+    max-height: 0;
+    padding: 0 5px;
+    overflow: hidden; }
+    .editor-control__dashboard__button {
+      border-radius: 8px;
+      color: #666666;
+      cursor: pointer;
+      flex: 1;
+      font-size: 12px;
+      margin: 5px 0 10px 0;
+      padding: 10px;
+      text-align: center; }
+      .editor-control__dashboard__button:hover {
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1); }
+      .editor-control__dashboard__button svg {
+        height: 30px; }
+      .editor-control__dashboard__button p {
+        margin-top: 5px; }
+
+.editor-block {
+  color: #333333;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  line-height: 1.5;
+  padding-bottom: 10px;
+  padding-top: 10px; }
+  .editor-block__editor {
+    width: 100%;
+    box-shadow: none;
+    border: 0;
+    outline: none;
+    overflow: hidden;
+    resize: none; }
+  .editor-block__image__upload-panel {
+    background-color: #f4f4f4;
+    border: solid 1px #eeeeee;
+    border-radius: 4px;
+    color: #333333;
+    cursor: pointer;
+    padding: 120px 30%;
+    text-align: center; }
+    .editor-block__image__upload-panel--active {
+      background-color: #eeeeee; }
+    .editor-block__image__upload-panel__icon {
+      padding-bottom: 15px; }
+    .editor-block__image__upload-panel__input {
+      display: none; }
+    .editor-block__image__upload-panel__button {
+      display: none; }
+  .editor-block__image__img {
+    border-radius: 4px;
+    max-width: 100%; }
+  .editor-block__video__upload-panel {
+    background-color: #f4f4f4;
+    border: solid 1px #eeeeee;
+    border-radius: 4px;
+    color: #333333;
+    text-align: center; }
+    .editor-block__video__upload-panel--active {
+      background-color: #eeeeee; }
+    .editor-block__video__upload-panel__icon-container {
+      cursor: pointer;
+      padding: 60px 30% 30px 30%; }
+      .editor-block__video__upload-panel__icon-container__icon {
+        padding-bottom: 15px; }
+      .editor-block__video__upload-panel__icon-container__input {
+        display: none; }
+      .editor-block__video__upload-panel__icon-container__button {
+        display: none; }
+    .editor-block__video__upload-panel__input-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+      display: flex;
+      padding: 10px 15px;
+      margin: 10px 25px 40px 25px; }
+      .editor-block__video__upload-panel__input-container__icon svg {
+        height: 24px;
+        padding-right: 10px; }
+      .editor-block__video__upload-panel__input-container__input {
+        border: none;
+        font-size: 16px;
+        outline: none;
+        flex: 1; }
+  .editor-block__video__img {
+    border-radius: 4px;
+    max-width: 100%; }
+  .editor-block__header {
+    font-size: 20px;
+    font-weight: 600; }
+  .editor-block__body {
+    font-size: 16px;
+    font-weight: 400; }
+  .editor-block__quote {
+    border-left: solid 2px #eeeeee;
+    color: #666666;
+    font-size: 30px;
+    font-weight: 300;
+    padding-left: 20px; }
+
+.test {
+  display: none; }
+
+.parent .yo {
+  text-align: right; }
