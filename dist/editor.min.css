@@ -6,25 +6,27 @@
   position: relative; }
   .editor-control__expand-handle {
     border-top: dashed 2px #eeeeee;
-    padding: 5px 0;
-    cursor: pointer; }
+    cursor: pointer;
+    text-align: center; }
     .editor-control__expand-handle__button {
-      background-color: #ec7070;
-      border-radius: 50%;
-      color: white;
-      display: none;
+      background-color: white;
+      border: solid 1px #eeeeee;
+      color: #dddddd;
+      border-radius: 11px;
+      display: inline-block;
+      font-size: 14px;
       font-weight: 600;
-      height: 25px;
       left: 0;
-      line-height: 25px;
-      position: absolute;
-      text-align: center;
-      top: 0;
-      width: 25px; }
+      line-height: 1.5;
+      margin-top: -13.5px;
+      padding: 0 20px;
+      text-align: center; }
     .editor-control__expand-handle:hover {
       border-top: solid 2px #ec7070; }
       .editor-control__expand-handle:hover .editor-control__expand-handle__button {
-        display: block; }
+        background-color: #ec7070;
+        border-color: #ec7070;
+        color: white; }
   .editor-control__dashboard {
     display: flex;
     max-height: 0;
@@ -55,13 +57,31 @@
   line-height: 1.5;
   padding-bottom: 10px;
   padding-top: 10px; }
-  .editor-block__editor {
-    width: 100%;
-    box-shadow: none;
-    border: 0;
-    outline: none;
-    overflow: hidden;
-    resize: none; }
+  .editor-block__container {
+    position: relative; }
+    .editor-block__container__delete-button {
+      background-color: #333333;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-block;
+      opacity: 0.5;
+      padding: 5px 6px 7px 6px;
+      position: absolute;
+      right: 15px;
+      top: -5px; }
+      .editor-block__container__delete-button:hover {
+        opacity: 0.7; }
+      .editor-block__container__delete-button__icon {
+        color: white;
+        height: 12px;
+        width: 12px; }
+    .editor-block__container__editor {
+      width: 100%;
+      box-shadow: none;
+      border: 0;
+      outline: none;
+      overflow: hidden;
+      resize: none; }
   .editor-block__image__upload-panel {
     background-color: #f4f4f4;
     border: solid 1px #eeeeee;

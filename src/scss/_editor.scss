@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 
-$color--black: rgb(51, 51, 51);
-$color--brownish-grey: rgb(102, 102, 102);
-$color--dark-peach: rgb(236, 112, 112);
-$color--white-outline: rgb(238, 238, 238);
-$color--white-bg: rgb(244, 244, 244);
-$color--white: rgb(255, 255, 255);
+$color--black         : rgb(51, 51, 51);
+$color--brownish-grey : rgb(102, 102, 102);
+$color--light-grey    : rgb(221, 221, 221);
+$color--white-outline : rgb(238, 238, 238);
+$color--white-bg      : rgb(244, 244, 244);
+$color--white         : rgb(255, 255, 255);
+$color--dark-peach    : rgb(236, 112, 112);
 
 $font-weight--light: 300;
 $font-weight--normal: 400;
 $font-weight--bold: 600;
 
-$font-size--button: 12px;
+$font-size--small: 12px;
+$font-size--medium: 14px;
 $font-size--body: 16px;
 $font-size--header: 20px;
 $font-size--quote: 30px;
@@ -24,29 +26,31 @@ $font-size--quote: 30px;
 
   &__expand-handle {
     border-top: dashed 2px $color--white-outline;
-    padding: 5px 0;
     cursor: pointer;
+    text-align: center;
 
     &__button {
-      background-color: $color--dark-peach;
-      border-radius: 50%;
-      color: $color--white;
-      display: none;
+      background-color: $color--white;
+      border: solid 1px $color--white-outline;
+      color: $color--light-grey;
+      border-radius: 11px;
+      display: inline-block;
+      font-size: $font-size--medium;
       font-weight: $font-weight--bold;
-      height: 25px;
       left: 0;
-      line-height: 25px;
-      position: absolute;
+      line-height: 1.5;
+      margin-top: -13.5px;
+      padding: 0 20px;
       text-align: center;
-      top: 0;
-      width: 25px;
     }
 
     &:hover {
       border-top: solid 2px $color--dark-peach;
 
       .editor-control__expand-handle__button {
-        display: block;
+        background-color: $color--dark-peach;
+        border-color: $color--dark-peach;
+        color: $color--white;
       }
     }
   }
@@ -62,7 +66,7 @@ $font-size--quote: 30px;
       color: $color--brownish-grey;
       cursor: pointer;
       flex: 1;
-      font-size: $font-size--button;
+      font-size: $font-size--small;
       margin: 5px 0 10px 0;
       padding: 10px;
       text-align: center;
@@ -92,13 +96,39 @@ $font-size--quote: 30px;
   padding-bottom: 10px;
   padding-top: 10px;
 
-  &__editor {
-    width: 100%;
-    box-shadow: none;
-    border: 0;
-    outline: none;
-    overflow: hidden;
-    resize: none;
+  &__container {
+    position: relative;
+
+    &__delete-button {
+      background-color: $color--black;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-block;
+      opacity: 0.5;
+      padding: 5px 6px 7px 6px;
+      position: absolute;
+      right: 15px;
+      top: -5px;
+
+      &:hover {
+        opacity: 0.7;
+      }
+
+      &__icon {
+        color: $color--white;
+        height: $font-size--small;
+        width: $font-size--small;
+      }
+    }
+
+    &__editor {
+      width: 100%;
+      box-shadow: none;
+      border: 0;
+      outline: none;
+      overflow: hidden;
+      resize: none;
+    }
   }
 
   &__image {

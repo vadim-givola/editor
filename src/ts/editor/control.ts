@@ -11,6 +11,7 @@ export class Control {
   elem: HTMLDivElement = document.createElement('div');
   dashboard: HTMLDivElement = document.createElement('div');
   expandHandle: HTMLDivElement = document.createElement('div');
+  expandButton: HTMLDivElement = document.createElement('div');
   quoteButton: HTMLDivElement = document.createElement('div');
   headerButton: HTMLDivElement = document.createElement('div');
   textButton: HTMLDivElement = document.createElement('div');
@@ -18,16 +19,14 @@ export class Control {
   videoButton: HTMLDivElement;
 
   constructor(public editor: Editor, public block: Block) {
-
     this.elem.classList.add('editor-control');
     this.elem.appendChild(this.expandHandle);
     this.expandHandle.classList.add('editor-control__expand-handle', 'js-expand-handle')
 
-    let expandButton = document.createElement('div');
-    this.expandHandle.appendChild(expandButton);
-    expandButton.classList.add('editor-control__expand-handle__button')
-    expandButton.innerHTML = '+';
-    this.expandHandle.onclick = () => { this.expandDashboard(); };
+    this.expandHandle.appendChild(this.expandButton);
+    this.expandButton.classList.add('editor-control__expand-handle__button')
+    this.expandButton.innerHTML = '+ ADD';
+    this.expandHandle.onclick = () => { this.toggleDashboard(); };
 
     this.elem.appendChild(this.dashboard);
     this.dashboard.classList.add('editor-control__dashboard')
@@ -80,13 +79,22 @@ export class Control {
     }
   }
 
+  toggleDashboard(): void {
+    if (this.dashboard.style.maxHeight == '0px')
+      this.expandDashboard();
+    else
+      this.collapseDashboard();
+  }
+
   collapseDashboard(): void {
-    this.dashboard.style.maxHeight = '0';
+    this.dashboard.style.maxHeight = '0px';
+    this.expandButton.innerHTML = '+ ADD'
   }
 
   expandDashboard(): void {
     this.collapseAll();
     this.dashboard.style.maxHeight = this.dashboard.scrollHeight + 30 + "px";
+    this.expandButton.innerHTML = 'HIDE'
   }
 
   collapseAll() {

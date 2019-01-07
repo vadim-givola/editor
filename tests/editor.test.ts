@@ -3,7 +3,6 @@ import {Browser} from './helper'
 
 test('fills textbox, uploads an image, and uploads a video', async () => {
   await Browser.go('dist/demo.html');
-  await Browser.find('.js-expand-handle').click();
   await Browser.find('.js-text-button').click();
   await Browser.find('.editor-block__body').fill('middle');
 

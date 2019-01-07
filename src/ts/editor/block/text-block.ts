@@ -27,7 +27,7 @@ export class TextBlock extends Block {
     this.elem.classList.add('editor-block__text');
     this.elem.appendChild(this.textarea);
 
-    this.textarea.classList.add('editor-block__editor', 'editor-block__body');
+    this.textarea.classList.add('editor-block__container__editor', 'editor-block__body');
     this.textarea.setAttribute('rows', '1');
     this.textarea.addEventListener('input', function() {
       if (this.textarea.scrollHeight > this.textarea.clientHeight) {

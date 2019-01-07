@@ -71,6 +71,17 @@ export class Editor {
     block.control.expandDashboard();
   }
 
+  remove(block: Block) {
+    for (let i=0;i < this.blocks.length;i++) {
+      if (block == this.blocks[i]) {
+        console.log("JAJAJAJA")
+        this.blocks.splice(i, 1);
+        block.elem.remove();
+        break;
+      }
+    }
+  }
+
   getContent(): Array<RawBlock> {
     let rawContent: Array<RawBlock> = [];
     for (let block of this.blocks) {
