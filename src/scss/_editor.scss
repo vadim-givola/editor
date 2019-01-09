@@ -1,4 +1,4 @@
-    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
 
 $color--black         : rgb(51, 51, 51);
 $color--brownish-grey : rgb(102, 102, 102);
@@ -32,16 +32,18 @@ $font-size--quote: 30px;
     &__button {
       background-color: $color--white;
       border: solid 1px $color--white-outline;
-      color: $color--light-grey;
       border-radius: 11px;
-      display: inline-block;
+      box-sizing: border-box;
+      color: $color--light-grey;
+      display: block;
       font-size: $font-size--medium;
       font-weight: $font-weight--bold;
       left: 0;
       line-height: 1.5;
-      margin-top: -13.5px;
+      margin: -13.5px auto 0 auto;
       padding: 0 20px;
       text-align: center;
+      width: 90px;
     }
 
     &:hover {
@@ -102,22 +104,19 @@ $font-size--quote: 30px;
     &__delete-button {
       background-color: $color--black;
       border-radius: 4px;
+      box-sizing: border-box;
+      color: $color--white;
       cursor: pointer;
       display: inline-block;
+      line-height: 0;
       opacity: 0.5;
-      padding: 5px 6px 7px 6px;
+      padding: 5px;
       position: absolute;
       right: 15px;
       top: -5px;
 
       &:hover {
         opacity: 0.7;
-      }
-
-      &__icon {
-        color: $color--white;
-        height: $font-size--small;
-        width: $font-size--small;
       }
     }
 

@@ -11,16 +11,18 @@
     .editor-control__expand-handle__button {
       background-color: white;
       border: solid 1px #eeeeee;
-      color: #dddddd;
       border-radius: 11px;
-      display: inline-block;
+      box-sizing: border-box;
+      color: #dddddd;
+      display: block;
       font-size: 14px;
       font-weight: 600;
       left: 0;
       line-height: 1.5;
-      margin-top: -13.5px;
+      margin: -13.5px auto 0 auto;
       padding: 0 20px;
-      text-align: center; }
+      text-align: center;
+      width: 90px; }
     .editor-control__expand-handle:hover {
       border-top: solid 2px #ec7070; }
       .editor-control__expand-handle:hover .editor-control__expand-handle__button {
@@ -62,19 +64,18 @@
     .editor-block__container__delete-button {
       background-color: #333333;
       border-radius: 4px;
+      box-sizing: border-box;
+      color: white;
       cursor: pointer;
       display: inline-block;
+      line-height: 0;
       opacity: 0.5;
-      padding: 5px 6px 7px 6px;
+      padding: 5px;
       position: absolute;
       right: 15px;
       top: -5px; }
       .editor-block__container__delete-button:hover {
         opacity: 0.7; }
-      .editor-block__container__delete-button__icon {
-        color: white;
-        height: 12px;
-        width: 12px; }
     .editor-block__container__editor {
       width: 100%;
       box-shadow: none;
