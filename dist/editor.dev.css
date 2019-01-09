@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600");
 .editor-control {
   font-family: 'Source Sans Pro', sans-serif;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   padding-top: 10px;
   position: relative; }
   .editor-control__expand-handle {
