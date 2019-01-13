@@ -7,6 +7,13 @@
         "target": "es5",
         "lib": ["es6", "dom"],
         "esModuleInterop": true,
-        "allowJs": true
-    }
+        "stripInternal": true,
+        "declaration": true,
+        "declarationDir": "./types",
+        "moduleResolution": "node",
+        // TODO(tanin): Change the below to true
+        "strict": false
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "tests", "ts-test-project"]
 }

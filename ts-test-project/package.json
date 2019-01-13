@@ -1,0 +1,16 @@
+{
+  "name": "ts-test-project",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "editor": "../",
+    "ts-jest": "^23.10.5",
+    "ts-loader": "^5.3.0",
+    "typescript": "^3.1.6",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {}
+}

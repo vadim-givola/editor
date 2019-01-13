@@ -2,17 +2,26 @@
   "name": "editor",
   "version": "1.0.0",
   "description": "",
+  "main": "dist/editor.min.js",
+  "module": "dist/editor.min.js",
+  "types": "types/index.d.ts",
+  "sideEffects": false,
   "scripts": {
-    "test": "webpack --config webpack.dev.js && ./node_modules/.bin/node-sass src/scss/index.scss dist/editor.dev.css && jest",
-    "start": "npm-run-all --parallel start:**",
-    "start:js": "webpack-dev-server --open --config webpack.dev.js",
-    "start:css": "./node_modules/.bin/node-sass -w -r src/scss/index.scss dist/editor.dev.css",
-    "build": "npm-run-all build:**",
-    "build:js": "webpack --config webpack.prod.js",
+    "test": "./node_modules/.bin/webpack --config webpack.dev.js && ./node_modules/.bin/node-sass src/scss/index.scss dist/editor.dev.css && jest",
+    "start": "./node_modules/.bin/npm-run-all --parallel start:**",
+    "start:js": "./node_modules/.bin/webpack-dev-server --open --config webpack.dev.js",
+    "start:css": "./node_modules/.bin/node-sass src/scss/index.scss dist/editor.dev.css && ./node_modules/.bin/node-sass -w src/scss/index.scss dist/editor.dev.css",
+    "build": "./node_modules/.bin/npm-run-all build:**",
+    "build:js": "./node_modules/.bin/webpack --config webpack.prod.js",
     "build:css": "./node_modules/.bin/node-sass src/scss/index.scss dist/editor.min.css"
   },
+  "files": [
+    "src/*.js",
+    "dist/*.js",
+    "types/*.d.ts"
+  ],
   "keywords": [],
-  "author": "",
+  "author": "GIVE.asia engineering",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^23.3.9",

@@ -1,0 +1,20 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../../dist/editor.min.css">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta charset="utf-8">
+</head>
+<body>
+<div id="editor"></div>
+<button id="getRawContentButton" onclick="getContent();">Get raw content</button>
+<div id="rawContent"></div>
+<script src="test.js"></script>
+<script>
+    window.initializeEditor();
+
+    function getContent() {
+        document.querySelector('#rawContent').innerHTML = JSON.stringify(editor.getContent());
+    }
+</script>
+</body>
+</html>
