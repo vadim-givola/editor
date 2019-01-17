@@ -1,5 +1,8 @@
 import { Editor } from '../editor';
 import { Block, RawBlock, BlockReader } from './block';
+export interface RawTextBlock extends RawBlock {
+    content: string;
+}
 export declare class TextBlockReader implements BlockReader {
     canParse(rawBlock: RawBlock): Boolean;
     parse(rawBlock: RawBlock, editor: Editor): Block;

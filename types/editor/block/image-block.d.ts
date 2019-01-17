@@ -1,5 +1,8 @@
 import { Editor } from '../editor';
 import { Block, RawBlock, BlockReader } from './block';
+export interface RawImageBlock extends RawBlock {
+    url: string;
+}
 export declare class ImageBlockReader implements BlockReader {
     canParse(rawBlock: RawBlock): Boolean;
     parse(rawBlock: RawBlock, editor: Editor): Block;
