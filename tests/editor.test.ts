@@ -42,7 +42,6 @@ test('fills textbox, uploads an image, and uploads a video', async () => {
     [
       {type: 'video', url: "https://www.youtube.com/watch?v=J_rfmXdRAxY"},
       {type: 'text', content: 'middle'},
-      // {type: 'video', url: videoUrl},
       {type: 'image', url: imageUrl},
       {type: 'header', content: 'header'},
       {type: 'quote', content: 'quote'},

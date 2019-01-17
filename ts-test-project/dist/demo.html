@@ -10,7 +10,7 @@
 <div id="rawContent"></div>
 <script src="test.js"></script>
 <script>
-    window.initializeEditor();
+    var editor = window.initializeEditor();
 
     function getContent() {
         document.querySelector('#rawContent').innerHTML = JSON.stringify(editor.getContent());

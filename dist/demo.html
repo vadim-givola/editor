@@ -18,20 +18,6 @@
       let cloudinaryUnsignedUploadName = 'brrw7cfx';
       let cloudinaryUrl = `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/upload`;
 
-      function waitForVideo(publicId, successCallback) {
-        let videoUrl = `https://res.cloudinary.com/${cloudinaryCloudName}/video/upload/vc_auto/${publicId}.mp4`;
-        let video = document.createElement('video');
-        video.addEventListener('loadeddata', function() {
-          if(video.readyState >= 2) {
-            successCallback(videoUrl);
-          }
-        });
-        video.onerror = () => { 
-          setTimeout(() => { waitForVideo(publicId, successCallback) }, 10000);
-        };
-        video.src = videoUrl;
-      }
-
       let editor = window.installEditor(
         document.querySelector('#editor'),
         {
@@ -55,34 +41,6 @@
             fd.append('upload_preset', cloudinaryUnsignedUploadName);
             fd.append('file', file);
             xhr.send(fd);
-          },
-          uploadVideo: function(file, progressCallback, successCallback, failureCallback) {
-            let xhr = new XMLHttpRequest();
-            let fd = new FormData();
-            xhr.open('POST', cloudinaryUrl, true);
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-            xhr.upload.addEventListener("progress", function(e) {
-              progressCallback(e.loaded, e.total);
-            });
-
-            xhr.onreadystatechange = (e) => {
-              if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                  let response = JSON.parse(xhr.responseText);
-
-                  progressCallback(0, 1, 'Encoding video...');
-                  waitForVideo(response.public_id, successCallback);
-                } else {
-                  failureCallback(e);
-                }
-              }
-            };
-
-            fd.append('upload_preset', cloudinaryUnsignedUploadName);
-            fd.append('file', file);
-            xhr.send(fd);
-
           },
           content: []
         }

@@ -126,6 +126,8 @@
       display: flex;
       padding: 10px 15px;
       margin: 10px 25px 40px 25px; }
+      .editor-block__video__upload-panel__input-container__label {
+        padding-top: 10px; }
       .editor-block__video__upload-panel__input-container__icon svg {
         height: 24px;
         padding-right: 10px; }

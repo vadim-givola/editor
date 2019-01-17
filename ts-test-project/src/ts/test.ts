@@ -12,5 +12,5 @@ import {Editor,EditorOptions} from 'editor';
       content: []
    };
 
-   let editor = new Editor(elem, options);
+   return new Editor(elem, options);
 };
