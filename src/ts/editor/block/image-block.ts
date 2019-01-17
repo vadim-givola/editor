@@ -3,7 +3,7 @@ import {Block, RawBlock, BlockReader} from './block'
 
 const TYPE: string = 'image';
 
-interface RawImageBlock extends RawBlock {
+export interface RawImageBlock extends RawBlock {
   url: string;
 }
 

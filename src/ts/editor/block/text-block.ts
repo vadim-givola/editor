@@ -3,7 +3,7 @@ import {Block, RawBlock, BlockReader} from './block'
 
 const TYPE: string = 'text';
 
-interface RawTextBlock extends RawBlock {
+export interface RawTextBlock extends RawBlock {
   content: string;
 }
 

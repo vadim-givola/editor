@@ -3,7 +3,7 @@ import {Block, RawBlock, BlockReader} from './block'
 
 const TYPE: string = 'quote';
 
-interface RawQuoteBlock extends RawBlock {
+export interface RawQuoteBlock extends RawBlock {
   content: string;
 }
 

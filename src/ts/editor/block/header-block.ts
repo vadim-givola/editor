@@ -3,7 +3,7 @@ import {Block, RawBlock, BlockReader} from './block'
 
 const TYPE: string = 'header';
 
-interface RawTextBlock extends RawBlock {
+export interface RawHeaderBlock extends RawBlock {
   content: string;
 }
 
@@ -13,7 +13,7 @@ export class HeaderBlockReader implements BlockReader {
   }
 
   parse(rawBlock: RawBlock, editor: Editor): Block {
-    let rawHeaderBlock = rawBlock as RawTextBlock;
+    let rawHeaderBlock = rawBlock as RawHeaderBlock;
     return new HeaderBlock(editor, rawHeaderBlock.content);
   }
 }
@@ -43,7 +43,7 @@ export class HeaderBlock extends Block {
   }
 
   getRawContent(): RawBlock {
-    let raw: RawTextBlock = {
+    let raw: RawHeaderBlock = {
       type: TYPE,
       content: this.textarea.value
     };

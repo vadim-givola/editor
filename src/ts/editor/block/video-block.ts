@@ -3,7 +3,7 @@ import {Block, RawBlock, BlockReader} from './block'
 
 const TYPE: string = 'video';
 
-interface RawVideoBlock extends RawBlock {
+export interface RawVideoBlock extends RawBlock {
   url: string;
 }
 
