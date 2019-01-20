@@ -111,7 +111,9 @@ export class VideoBlock extends Block {
     }
   }
 
-  focus(): void {}
+  focus(): void {
+    super.focus();
+  }
 
   getRawContent(): RawBlock {
     let raw: RawVideoBlock = {

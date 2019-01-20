@@ -73,7 +73,6 @@ export class Editor {
   remove(block: Block) {
     for (let i=0;i < this.blocks.length;i++) {
       if (block == this.blocks[i]) {
-        console.log("JAJAJAJA")
         this.blocks.splice(i, 1);
         block.elem.remove();
         break;
@@ -87,6 +86,15 @@ export class Editor {
       rawContent.push(block.getRawContent());
     }
     return rawContent;
+  }
+
+  showDeleteButton(block: Block) {
+    for (let i=0;i < this.blocks.length;i++) {
+      this.blocks[i].deleteButton.style.display = 'none';
+      if (block == this.blocks[i]) {
+        this.blocks[i].deleteButton.style.display = 'inline-block';
+      }
+    }
   }
 
   private render() {

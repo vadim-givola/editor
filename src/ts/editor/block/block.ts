@@ -21,6 +21,10 @@ export abstract class Block {
     this.control = new Control(editor, this);
     this.elem.classList.add('editor-block');
     this.elem.appendChild(this.control.elem);
+    this.elem.addEventListener('click', function() {
+      this.focus();
+      this.editor.showDeleteButton(this);
+    }.bind(this));
 
     this.elem.appendChild(this.container);
     this.container.classList.add('editor-block__container');
@@ -42,6 +46,23 @@ export abstract class Block {
 
   abstract getRawContent(): RawBlock
 
-  abstract focus(): void
+  focus(): void {
+    this.editor.showDeleteButton(this);
+  }
+
+  autoresizeTextarea(textarea: HTMLTextAreaElement): void {
+    textarea.addEventListener('input', function() {
+      if (textarea.scrollHeight > textarea.clientHeight && textarea.scrollHeight) {
+        textarea.style.height = textarea.scrollHeight + "px";
+      }
+    }.bind(this));
+
+    // trigger a dummy event to set the correct height of the textarea after the DOM is initialized
+    window.addEventListener("DOMContentLoaded", () => {
+      let evt = document.createEvent("Event");
+      evt.initEvent("input", true, true);
+      textarea.dispatchEvent(evt)
+    }, false);
+  }
 }
 

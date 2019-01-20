@@ -16,5 +16,6 @@ export declare abstract class Block {
     control: Control;
     constructor(editor: Editor);
     abstract getRawContent(): RawBlock;
-    abstract focus(): void;
+    focus(): void;
+    autoresizeTextarea(textarea: HTMLTextAreaElement): void;
 }

@@ -28,17 +28,14 @@ export class TextBlock extends Block {
     this.elem.appendChild(this.textarea);
 
     this.textarea.classList.add('editor-block__container__editor', 'editor-block__body');
-    this.textarea.setAttribute('rows', '1');
-    this.textarea.addEventListener('input', function() {
-      if (this.textarea.scrollHeight > this.textarea.clientHeight) {
-        this.textarea.style.height = this.textarea.scrollHeight + "px";
-      }
-    }.bind(this));
-
+    this.textarea.placeholder = 'Body text'
     this.textarea.innerHTML = this.content;
+
+    this.autoresizeTextarea(this.textarea);
   }
 
   focus(): void {
+    super.focus();
     this.textarea.focus();
   }
 

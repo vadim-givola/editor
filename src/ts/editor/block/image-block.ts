@@ -167,7 +167,9 @@ export class ImageBlock extends Block {
     }
   }
 
-  focus(): void {}
+  focus(): void {
+    super.focus();
+  }
 
   getRawContent(): RawBlock {
     let raw: RawImageBlock = {

@@ -13,5 +13,6 @@ export declare class Editor {
     add(block: Block, beforeBlock: Block): void;
     remove(block: Block): void;
     getContent(): Array<RawBlock>;
+    showDeleteButton(block: Block): void;
     private render;
 }
