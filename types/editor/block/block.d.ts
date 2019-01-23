@@ -17,5 +17,6 @@ export declare abstract class Block {
     constructor(editor: Editor);
     abstract getRawContent(): RawBlock;
     focus(): void;
-    autoresizeTextarea(textarea: HTMLTextAreaElement): void;
+    enableNewLinePrevention(textarea: HTMLTextAreaElement): void;
+    enableAutoresizing(textarea: HTMLTextAreaElement): void;
 }

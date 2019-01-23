@@ -50,12 +50,20 @@ export abstract class Block {
     this.editor.showDeleteButton(this);
   }
 
-  autoresizeTextarea(textarea: HTMLTextAreaElement): void {
-    textarea.addEventListener('input', function() {
-      if (textarea.scrollHeight > textarea.clientHeight && textarea.scrollHeight) {
-        textarea.style.height = textarea.scrollHeight + "px";
+  enableNewLinePrevention(textarea: HTMLTextAreaElement): void {
+    textarea.addEventListener('keypress', (ev) => {
+      // 13 is the enter key
+      if ((ev as KeyboardEvent).keyCode == 13) {
+        ev.preventDefault();
       }
-    }.bind(this));
+    });
+  }
+
+  enableAutoresizing(textarea: HTMLTextAreaElement): void {
+    textarea.addEventListener('input', () => {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    });
 
     // trigger a dummy event to set the correct height of the textarea after the DOM is initialized
     window.addEventListener("DOMContentLoaded", () => {

@@ -141,19 +141,19 @@
     max-width: 100%; }
   .editor-block__header {
     font-size: 20px;
-    font-weight: 600; }
+    font-weight: 600;
+    line-height: 30px; }
   .editor-block__body {
     font-size: 16px;
-    font-weight: 400; }
+    font-weight: 400;
+    line-height: 24px; }
   .editor-block__quote {
     border-left: solid 2px #eeeeee;
     color: #666666;
     font-size: 30px;
     font-weight: 300;
+    line-height: 40px;
     padding-left: 20px; }
 
 .test {
   display: none; }
-
-.parent .yo {
-  text-align: right; }

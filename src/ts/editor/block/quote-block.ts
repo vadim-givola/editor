@@ -29,9 +29,11 @@ export class QuoteBlock extends Block {
 
     this.textarea.classList.add('editor-block__container__editor', 'editor-block__quote');
     this.textarea.placeholder = 'Quote';
+    this.textarea.rows = 1;
     this.textarea.innerHTML = this.content;
 
-    this.autoresizeTextarea(this.textarea);
+    this.enableNewLinePrevention(this.textarea);
+    this.enableAutoresizing(this.textarea);
   }
 
   focus(): void {

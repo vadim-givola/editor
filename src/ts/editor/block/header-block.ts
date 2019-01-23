@@ -29,9 +29,11 @@ export class HeaderBlock extends Block {
 
     this.textarea.classList.add('editor-block__container__editor', 'editor-block__header');
     this.textarea.placeholder = 'Header';
+    this.textarea.rows = 1;
     this.textarea.innerHTML = this.content;
 
-    this.autoresizeTextarea(this.textarea)
+    this.enableNewLinePrevention(this.textarea);
+    this.enableAutoresizing(this.textarea);
   }
 
   focus(): void {

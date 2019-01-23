@@ -18,6 +18,10 @@ $font-size--body: 16px;
 $font-size--header: 20px;
 $font-size--quote: 30px;
 
+$line-height--body: 24px;
+$line-height--header: 30px;
+$line-height--quote: 40px;
+
 .editor-control {
   font-family: 'Source Sans Pro', sans-serif;
   padding-bottom: 15px;
@@ -227,11 +231,13 @@ $font-size--quote: 30px;
   &__header {
     font-size: $font-size--header;
     font-weight: $font-weight--bold;
+    line-height: $line-height--header;
   }
 
   &__body {
     font-size: $font-size--body;
     font-weight: $font-weight--normal;
+    line-height: $line-height--body;
   }
 
   &__quote {
@@ -239,6 +245,7 @@ $font-size--quote: 30px;
     color: $color--brownish-grey;
     font-size: $font-size--quote;
     font-weight: $font-weight--light;
+    line-height: $line-height--quote;
     padding-left: 20px;
   }
 }
