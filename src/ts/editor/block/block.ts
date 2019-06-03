@@ -62,7 +62,13 @@ export abstract class Block {
   enableAutoresizing(textarea: HTMLTextAreaElement): void {
     textarea.addEventListener('input', () => {
       textarea.style.height = 'auto';
-      textarea.style.height = textarea.scrollHeight + 'px';
+
+      // We don't resize the textarea to be less than 10px.
+      // This handles the case where the editor is initially hidden and later becomes visible.
+      // The scrollHeight is 0 when the textarea is hidden.
+      if (textarea.scrollHeight > 10) {
+        textarea.style.height = textarea.scrollHeight + 'px';
+      }
     });
 
     // trigger a dummy event to set the correct height of the textarea after the DOM is initialized

@@ -31,9 +31,7 @@
         color: white; }
   .editor-control__dashboard {
     display: flex;
-    max-height: 0;
-    padding: 0 5px;
-    overflow: hidden; }
+    padding: 0 5px; }
     .editor-control__dashboard__button {
       border-radius: 8px;
       color: #666666;
@@ -154,6 +152,3 @@
     font-weight: 300;
     line-height: 40px;
     padding-left: 20px; }
-
-.test {
-  display: none; }
