@@ -34,8 +34,10 @@ export abstract class TextBasedBlock extends Block {
     // trigger a dummy event to set the correct height of the textarea after the DOM is initialized
     window.addEventListener(
       "DOMContentLoaded",
-      this.redraw,
+      () => { this.redraw(); },
       false
     );
+
+    setTimeout(() => { this.redraw(); },1);
   }
 }
