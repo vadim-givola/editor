@@ -15,8 +15,7 @@ export declare abstract class Block {
     deleteIcon: HTMLDivElement;
     control: Control;
     constructor(editor: Editor);
+    redraw(): void;
     abstract getRawContent(): RawBlock;
     focus(): void;
-    enableNewLinePrevention(textarea: HTMLTextAreaElement): void;
-    enableAutoresizing(textarea: HTMLTextAreaElement): void;
 }

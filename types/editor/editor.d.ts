@@ -12,6 +12,7 @@ export declare class Editor {
     constructor(elem: HTMLDivElement, options: EditorOptions);
     add(block: Block, beforeBlock: Block): void;
     remove(block: Block): void;
+    redraw(): void;
     getContent(): Array<RawBlock>;
     showDeleteButton(block: Block): void;
     private render;

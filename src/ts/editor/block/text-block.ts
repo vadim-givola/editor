@@ -1,5 +1,6 @@
 import {Editor} from '../editor';
-import {Block, RawBlock, BlockReader} from './block'
+import {Block, BlockReader, RawBlock} from './block'
+import {TextBasedBlock} from "./text-based-block";
 
 const TYPE: string = 'text';
 
@@ -18,7 +19,7 @@ export class TextBlockReader implements BlockReader {
   }
 }
 
-export class TextBlock extends Block {
+export class TextBlock extends TextBasedBlock {
 
   textarea: HTMLTextAreaElement = document.createElement('textarea');
 
@@ -32,7 +33,7 @@ export class TextBlock extends Block {
     this.textarea.rows = 1;
     this.textarea.innerHTML = this.content;
 
-    this.enableAutoresizing(this.textarea);
+    this.enableAutoresizing();
   }
 
   focus(): void {

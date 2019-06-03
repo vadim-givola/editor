@@ -79,6 +79,12 @@ export class Editor {
     }
   }
 
+  redraw() {
+    for (let block of this.blocks) {
+      block.redraw();
+    }
+  }
+
   getContent(): Array<RawBlock> {
     let rawContent: Array<RawBlock> = [];
     for (let block of this.blocks) {

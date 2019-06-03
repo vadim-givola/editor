@@ -1,5 +1,6 @@
 import {Editor} from '../editor';
 import {Block, RawBlock, BlockReader} from './block'
+import {TextBasedBlock} from "./text-based-block";
 
 const TYPE: string = 'quote';
 
@@ -18,7 +19,7 @@ export class QuoteBlockReader implements BlockReader {
   }
 }
 
-export class QuoteBlock extends Block {
+export class QuoteBlock extends TextBasedBlock {
 
   textarea: HTMLTextAreaElement = document.createElement('textarea');
 
@@ -32,8 +33,8 @@ export class QuoteBlock extends Block {
     this.textarea.rows = 1;
     this.textarea.innerHTML = this.content;
 
-    this.enableNewLinePrevention(this.textarea);
-    this.enableAutoresizing(this.textarea);
+    this.enableNewLinePrevention();
+    this.enableAutoresizing();
   }
 
   focus(): void {

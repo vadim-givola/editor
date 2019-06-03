@@ -14,6 +14,18 @@
     <button id="getRawContentButton" onclick="getContent();">Get raw content</button>
     <div id="rawContent"></div>
     <script>
+      // Test the delay effect
+      document.querySelector('#editor').style.display = 'none';
+
+      setTimeout(
+        () => {
+          document.querySelector('#editor').style.display = 'block';
+          // When an editor is visible later, we need to invoke redraw() to layout everything correctly.
+          editor.redraw();
+        },
+        1
+      );
+
       let cloudinaryCloudName = 'dkft0mpzt';
       let cloudinaryUnsignedUploadName = 'brrw7cfx';
       let cloudinaryUrl = `https://api.cloudinary.com/v1_1/${cloudinaryCloudName}/upload`;
