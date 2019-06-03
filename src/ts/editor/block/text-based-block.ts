@@ -5,6 +5,7 @@ export abstract class TextBasedBlock extends Block {
   textarea: HTMLTextAreaElement;
 
   redraw() {
+    if (!this.textarea) { return; }
     let evt = document.createEvent("Event");
     evt.initEvent("input", true, true);
     this.textarea.dispatchEvent(evt)
@@ -30,7 +31,7 @@ export abstract class TextBasedBlock extends Block {
       }
     });
 
-// trigger a dummy event to set the correct height of the textarea after the DOM is initialized
+    // trigger a dummy event to set the correct height of the textarea after the DOM is initialized
     window.addEventListener(
       "DOMContentLoaded",
       this.redraw,
