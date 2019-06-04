@@ -147,6 +147,7 @@
     line-height: 24px; }
   .editor-block__quote {
     border-left: solid 2px #eeeeee;
+    box-sizing: border-box;
     color: #666666;
     font-size: 30px;
     font-weight: 300;

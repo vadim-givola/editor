@@ -240,6 +240,7 @@ $line-height--quote: 40px;
 
   &__quote {
     border-left: solid 2px $color--white-outline;
+    box-sizing: border-box;
     color: $color--brownish-grey;
     font-size: $font-size--quote;
     font-weight: $font-weight--light;
