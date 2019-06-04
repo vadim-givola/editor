@@ -40,7 +40,9 @@ export abstract class Block {
       '</path></svg>';
     this.deleteButton.appendChild(this.deleteIcon);
     this.deleteButton.onclick = () => {
-      this.editor.remove(this);
+      let answer = confirm("You want to delete this block?");
+      if (answer == true)
+        this.editor.remove(this);
     }
   }
 

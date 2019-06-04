@@ -24,8 +24,8 @@ $line-height--quote: 40px;
 
 .editor-control {
   font-family: 'Source Sans Pro', sans-serif;
-  padding-bottom: 15px;
-  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-top: 15px;
   position: relative;
 
   &__expand-handle {
@@ -114,8 +114,8 @@ $line-height--quote: 40px;
       opacity: 0.4;
       padding: 5px;
       position: absolute;
-      right: 15px;
-      top: -5px;
+      right: 5px;
+      top: -20px;
 
       &:hover {
         opacity: 0.7;
