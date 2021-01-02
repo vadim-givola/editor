@@ -107,6 +107,7 @@ export class ImageBlock extends Block {
     this.uploadButton.onclick = () => { this.inputFile.click() }
 
     this.inputFile.type = 'file';
+    this.inputFile.accept = 'image/*';
     this.inputFile.onchange = (event: Event): any => {
       let target = (<HTMLInputElement>event.target);
       this.handleFiles(target.files);
