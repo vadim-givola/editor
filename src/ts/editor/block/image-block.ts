@@ -101,7 +101,7 @@ export class ImageBlock extends Block {
       this.handleFiles(files);
     });
 
-    this.loadingIcon.innerHTML = 'Uploading image...'
+    this.loadingIcon.innerHTML = '<span class="editor-block__image__loading-icon"></span> Uploading image...'
     this.stopLoading();
     this.uploadButton.innerHTML = 'Upload image';
     this.uploadButton.onclick = () => { this.inputFile.click() }
