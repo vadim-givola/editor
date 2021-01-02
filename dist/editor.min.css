@@ -125,16 +125,6 @@
     text-align: center; }
     .editor-block__video__upload-panel--active {
       background-color: #eeeeee; }
-    .editor-block__video__upload-panel__icon-container {
-      cursor: pointer;
-      padding: 60px 30% 30px 30%;
-      font-size: 0; }
-      .editor-block__video__upload-panel__icon-container__icon {
-        padding-bottom: 15px; }
-      .editor-block__video__upload-panel__icon-container__input {
-        display: none; }
-      .editor-block__video__upload-panel__icon-container__button {
-        display: none; }
     .editor-block__video__upload-panel__input-container {
       background-color: white;
       border-radius: 10px;
@@ -144,9 +134,11 @@
       margin: 10px 25px 40px 25px; }
       .editor-block__video__upload-panel__input-container__label {
         padding-top: 10px; }
-      .editor-block__video__upload-panel__input-container__icon svg {
-        height: 24px;
-        padding-right: 10px; }
+      .editor-block__video__upload-panel__input-container__icon {
+        font-size: 0; }
+        .editor-block__video__upload-panel__input-container__icon svg {
+          height: 24px;
+          padding-right: 10px; }
       .editor-block__video__upload-panel__input-container__input {
         border: none;
         font-size: 16px;

@@ -196,24 +196,6 @@ $line-height--quote: 40px;
         background-color: $color--white-outline;
       }
 
-      &__icon-container {
-        cursor: pointer;
-        padding: 60px 30% 30px 30%;
-        font-size: 0;
-
-        &__icon {
-          padding-bottom: 15px;
-        }
-
-        &__input {
-          display: none;
-        }
-
-        &__button {
-          display: none;
-        }
-      }
-
       &__input-container {
         background-color: $color--white;
         border-radius: 10px;
@@ -226,9 +208,13 @@ $line-height--quote: 40px;
           padding-top: 10px;
         }
 
-        &__icon svg {
-          height: 24px;
-          padding-right: 10px;
+        &__icon {
+          font-size: 0;
+
+          svg {
+            height: 24px;
+            padding-right: 10px;
+          }
         }
 
         &__input {
