@@ -127,7 +127,8 @@
       background-color: #eeeeee; }
     .editor-block__video__upload-panel__icon-container {
       cursor: pointer;
-      padding: 60px 30% 30px 30%; }
+      padding: 60px 30% 30px 30%;
+      font-size: 0; }
       .editor-block__video__upload-panel__icon-container__icon {
         padding-bottom: 15px; }
       .editor-block__video__upload-panel__icon-container__input {
