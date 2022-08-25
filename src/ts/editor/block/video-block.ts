@@ -68,7 +68,7 @@ export class VideoBlock extends Block {
   }
 
   static extractYoutubeId(url: string): string {
-    let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+    let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=|shorts\/)([^#\&\?]*).*/;
     let match = url.match(regExp);
     return match ? match[2] : null;
   }
