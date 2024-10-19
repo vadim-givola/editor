@@ -13,7 +13,8 @@
     "start:css": "sass src/scss/index.scss dist/editor.dev.css && sass --watch src/scss/index.scss dist/editor.dev.css",
     "build": "npm-run-all build:**",
     "build:js": "webpack --config webpack.prod.js",
-    "build:css": "sass src/scss/index.scss dist/editor.min.css"
+    "build:css": "sass src/scss/index.scss dist/editor.min.css",
+    "build:dev": "webpack --config webpack.dev.js"
   },
   "files": [
     "src/*.js",
