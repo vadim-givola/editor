@@ -1,9 +1,9 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
     mode: 'production',
-    devtool: '',
+    devtool: false,
     output: {
         filename: 'editor.min.js',
     }

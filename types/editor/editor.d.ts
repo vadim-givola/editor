@@ -3,6 +3,7 @@ import { Block, RawBlock } from './block/block';
 export interface EditorOptions {
     content: Array<RawBlock>;
     uploadImage?: (file: File, successCallback: (url: string) => void, failureCallback: (error: string) => void) => void;
+    onChange?: (content: Array<RawBlock>) => void;
 }
 export declare class Editor {
     elem: HTMLDivElement;
@@ -15,5 +16,6 @@ export declare class Editor {
     redraw(): void;
     getContent(): Array<RawBlock>;
     showDeleteButton(block: Block): void;
+    private triggerOnChange;
     private render;
 }
