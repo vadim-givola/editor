@@ -38,6 +38,7 @@ function convertRawContent(rawContent: Array<RawBlock>, editor: Editor): Array<B
 export interface EditorOptions {
   content: Array<RawBlock>;
   uploadImage?: (file: File, successCallback: (url: string) => void, failureCallback: (error: string) => void) => void;
+  onChange?: (content: Array<RawBlock>) => void;
 }
 
 export class Editor {
@@ -50,6 +51,9 @@ export class Editor {
   ) {
     this.blocks = convertRawContent(this.options.content, this);
     this.render();
+
+    // Trigger the initial onChange event
+    this.triggerOnChange();
   }
 
   add(block: Block, beforeBlock: Block) {
@@ -67,6 +71,7 @@ export class Editor {
     }
 
     block.focus();
+    this.triggerOnChange();
   }
 
   remove(block: Block) {
@@ -77,6 +82,7 @@ export class Editor {
         break;
       }
     }
+    this.triggerOnChange();
   }
 
   redraw() {
@@ -99,6 +105,12 @@ export class Editor {
       if (block == this.blocks[i]) {
         this.blocks[i].deleteButton.style.display = 'inline-block';
       }
+    }
+  }
+
+  private triggerOnChange() {
+    if (this.options.onChange) {
+      this.options.onChange(this.getContent()); // Call onChange with current content
     }
   }
 
