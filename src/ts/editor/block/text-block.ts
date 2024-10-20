@@ -1,6 +1,6 @@
-import {Editor} from '../editor';
-import {Block, BlockReader, RawBlock} from './block'
-import {TextBasedBlock} from "./text-based-block";
+import { Editor } from '../editor';
+import { Block, BlockReader, RawBlock } from './block';
+import { TextBasedBlock } from './text-based-block';
 
 const TYPE: string = 'text';
 
@@ -33,7 +33,17 @@ export class TextBlock extends TextBasedBlock {
     this.textarea.rows = 1;
     this.textarea.innerHTML = this.content;
 
+    this.setupListeners();
     this.enableAutoresizing();
+  }
+
+  /**
+   * Setup input listeners, including the debounced onChange
+   */
+  private setupListeners(): void {
+    this.textarea.addEventListener('input', () => {
+      this.debouncedTriggerOnChange(); // This is inherited from TextBasedBlock
+    });
   }
 
   focus(): void {

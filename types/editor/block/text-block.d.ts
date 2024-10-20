@@ -1,6 +1,6 @@
 import { Editor } from '../editor';
 import { Block, BlockReader, RawBlock } from './block';
-import { TextBasedBlock } from "./text-based-block";
+import { TextBasedBlock } from './text-based-block';
 export interface RawTextBlock extends RawBlock {
     content: string;
 }
@@ -13,6 +13,10 @@ export declare class TextBlock extends TextBasedBlock {
     content: string;
     textarea: HTMLTextAreaElement;
     constructor(editor: Editor, content: string);
+    /**
+     * Setup input listeners, including the debounced onChange
+     */
+    private setupListeners;
     focus(): void;
     getRawContent(): RawBlock;
 }

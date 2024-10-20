@@ -33,8 +33,18 @@ export class QuoteBlock extends TextBasedBlock {
     this.textarea.rows = 1;
     this.textarea.innerHTML = this.content;
 
+    this.setupListeners();
     this.enableNewLinePrevention();
     this.enableAutoresizing();
+  }
+
+  /**
+   * Setup input listeners, including the debounced onChange
+   */
+  private setupListeners(): void {
+    this.textarea.addEventListener('input', () => {
+      this.debouncedTriggerOnChange(); // This is inherited from TextBasedBlock
+    });
   }
 
   focus(): void {

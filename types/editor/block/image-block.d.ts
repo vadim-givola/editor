@@ -18,12 +18,23 @@ export declare class ImageBlock extends Block {
     inputFile: HTMLInputElement;
     imagePanel: HTMLDivElement;
     img: HTMLImageElement;
+    private debouncedTriggerOnChange;
     constructor(editor: Editor, url: string);
+    private setupListeners;
+    private addDragAndDropListeners;
     handleFiles(files: FileList): void;
-    preventDefaults(e: Event): void;
+    /**
+     * Triggers the editor's onChange callback with the updated content
+     */
+    private triggerOnChange;
+    /**
+     * Debounce utility to delay execution of a function
+     */
+    private debounce;
     startLoading(): void;
     stopLoading(): void;
     isAdvancedUpload(): boolean;
+    preventDefaults(e: Event): void;
     updateView(): void;
     focus(): void;
     getRawContent(): RawBlock;

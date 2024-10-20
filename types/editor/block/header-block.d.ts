@@ -13,6 +13,10 @@ export declare class HeaderBlock extends TextBasedBlock {
     content: string;
     textarea: HTMLTextAreaElement;
     constructor(editor: Editor, content: string);
+    /**
+     * Setup input listeners, including the debounced onChange
+     */
+    private setupListeners;
     focus(): void;
     getRawContent(): RawBlock;
 }

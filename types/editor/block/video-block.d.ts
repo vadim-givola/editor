@@ -18,10 +18,22 @@ export declare class VideoBlock extends Block {
     videoPanel: HTMLDivElement;
     videoElem: HTMLVideoElement;
     videoIframe: HTMLIFrameElement;
+    private debouncedTriggerOnChange;
     constructor(editor: Editor, videoUrl: string);
     static extractYoutubeId(url: string): string;
     static extractVimeoId(url: string): string;
+    /**
+     * Update the view based on the video URL.
+     */
     updateView(): void;
+    /**
+     * Trigger the editor's onChange callback with the updated content.
+     */
+    private triggerOnChange;
+    /**
+     * Debounce utility to delay execution of a function.
+     */
+    private debounce;
     focus(): void;
     getRawContent(): RawBlock;
 }

@@ -2,8 +2,8 @@ import { Block } from "./block";
 import { Editor } from "../editor";
 export declare abstract class TextBasedBlock extends Block {
     editor: Editor;
-    textarea: HTMLTextAreaElement;
-    private debouncedTriggerOnChange;
+    textarea: HTMLTextAreaElement | null;
+    protected debouncedTriggerOnChange: () => void;
     constructor(editor: Editor);
     /**
      * Redraw the block and trigger input events for proper resizing
@@ -17,10 +17,6 @@ export declare abstract class TextBasedBlock extends Block {
      * Automatically resizes the textarea to fit its content
      */
     enableAutoresizing(): void;
-    /**
-     * Enables input listener to trigger the editor's onChange event with debounce
-     */
-    private enableInputListener;
     /**
      * Triggers the editor's onChange callback with the updated content
      */

@@ -1,5 +1,5 @@
-import {Editor} from '../editor';
-import {Block, RawBlock, BlockReader} from './block'
+import { Editor } from '../editor';
+import { Block, RawBlock, BlockReader } from './block';
 
 const TYPE: string = 'image';
 
@@ -9,7 +9,7 @@ export interface RawImageBlock extends RawBlock {
 
 export class ImageBlockReader implements BlockReader {
   canParse(rawBlock: RawBlock): Boolean {
-    return rawBlock.type == TYPE;
+    return rawBlock.type === TYPE;
   }
 
   parse(rawBlock: RawBlock, editor: Editor): Block {
@@ -19,19 +19,21 @@ export class ImageBlockReader implements BlockReader {
 }
 
 export class ImageBlock extends Block {
-
   uploadPanel: HTMLDivElement = document.createElement('div');
   uploadIcon: HTMLDivElement = document.createElement('div');
   uploadLabel: HTMLDivElement = document.createElement('div');
   uploadButton: HTMLButtonElement = document.createElement('button');
   loadingIcon: HTMLSpanElement = document.createElement('span');
   inputFile: HTMLInputElement = document.createElement('input');
-
+  
   imagePanel: HTMLDivElement = document.createElement('div');
   img: HTMLImageElement = document.createElement('img');
 
+  private debouncedTriggerOnChange: () => void;
+
   constructor(public editor: Editor, public url: string) {
     super(editor);
+
     this.elem.classList.add('editor-block__image');
     this.img.classList.add('editor-block__image__img');
 
@@ -45,8 +47,8 @@ export class ImageBlock extends Block {
     this.uploadPanel.appendChild(this.loadingIcon);
     this.imagePanel.appendChild(this.img);
 
-    this.uploadPanel.classList.add('editor-block__image__upload-panel')
-    this.uploadIcon.classList.add('editor-block__image__upload-panel__icon')
+    this.uploadPanel.classList.add('editor-block__image__upload-panel');
+    this.uploadIcon.classList.add('editor-block__image__upload-panel__icon');
     this.uploadButton.classList.add('editor-block__image__upload-panel__button');
     this.inputFile.classList.add('editor-block__image__upload-panel__input');
 
@@ -69,17 +71,33 @@ export class ImageBlock extends Block {
       '        <path stroke="#666" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M34 24l-3 11h4l1 5h3l-1-5h4z"/>\n' +
       '    </g>\n' +
       '</svg>\n';
+    
+    this.inputFile.type = 'file';
+    this.inputFile.accept = 'image/*';
 
-    if (this.isAdvancedUpload())
-      this.uploadLabel.innerHTML = 'Drag and drop a photo to upload or tap to upload';
-    else
-      this.uploadLabel.innerHTML = 'Tap to upload';
+    this.debouncedTriggerOnChange = this.debounce(() => {
+      this.triggerOnChange();
+    }, 300);
+
+    this.setupListeners();
+    this.addDragAndDropListeners(); // Restore drag and drop functionality
+    this.updateView();
+  }
+
+  private setupListeners(): void {
+    this.inputFile.onchange = (event: Event): any => {
+      let target = (<HTMLInputElement>event.target);
+      this.handleFiles(target.files);
+    };
+
     this.uploadPanel.onclick = () => {
       this.inputFile.click();
-    }
+    };
+  }
 
+  private addDragAndDropListeners(): void {
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-      this.uploadPanel.addEventListener(eventName, this.preventDefaults, false)
+      this.uploadPanel.addEventListener(eventName, this.preventDefaults, false);
     });
 
     ['dragenter', 'dragover'].forEach(eventName => {
@@ -92,55 +110,56 @@ export class ImageBlock extends Block {
       this.uploadPanel.addEventListener(eventName, () => {
         this.uploadPanel.classList.remove('editor-block__image__upload-panel--active');
       });
-    })
+    });
 
     this.uploadPanel.addEventListener('drop', (event: DragEvent) => {
       let dt = event.dataTransfer;
-      let files = dt.files;
-
-      this.handleFiles(files);
+      let files = dt?.files;
+      if (files) {
+        this.handleFiles(files);
+      }
     });
-
-    this.loadingIcon.innerHTML = '<span class="editor-block__image__loading-icon"></span> Uploading image...'
-    this.stopLoading();
-    this.uploadButton.innerHTML = 'Upload image';
-    this.uploadButton.onclick = () => { this.inputFile.click() }
-
-    this.inputFile.type = 'file';
-    this.inputFile.accept = 'image/*';
-    this.inputFile.onchange = (event: Event): any => {
-      let target = (<HTMLInputElement>event.target);
-      this.handleFiles(target.files);
-    };
-
-    this.updateView();
   }
 
   handleFiles(files: FileList): void {
-    if (files.length == 0) {
-      // in IE 11, the change event is fired when we programmatically set `.js-fileInput`'s value to empty string.
-      return;
-    }
+    if (files.length === 0) return;
 
     this.startLoading();
 
-    let successCallback = (url: string) => {
+    const successCallback = (url: string) => {
       this.stopLoading();
       this.url = url;
       this.updateView();
     };
 
-    let failCallback = (error: string) => {
+    const failCallback = (error: string) => {
       this.stopLoading();
     };
 
     this.editor.options.uploadImage(files[0], successCallback, failCallback);
     this.inputFile.value = '';
-  };
+  }
 
-  preventDefaults(e: Event): void {
-    e.preventDefault()
-    e.stopPropagation()
+  /**
+   * Triggers the editor's onChange callback with the updated content
+   */
+  private triggerOnChange() {
+    if (this.editor.options.onChange) {
+      this.editor.options.onChange(this.editor.getContent());
+    }
+  }
+
+  /**
+   * Debounce utility to delay execution of a function
+   */
+  private debounce(func: (...args: any[]) => void, wait: number) {
+    let timeout: ReturnType<typeof setTimeout>;
+    return (...args: any[]) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        func(...args);
+      }, wait);
+    };
   }
 
   startLoading(): void {
@@ -154,7 +173,15 @@ export class ImageBlock extends Block {
   }
 
   isAdvancedUpload(): boolean {
-    return ('draggable' in this.uploadPanel) || ('ondragstart' in this.uploadPanel && 'ondrop' in this.uploadPanel);
+    return (
+      'draggable' in this.uploadPanel ||
+      ('ondragstart' in this.uploadPanel && 'ondrop' in this.uploadPanel)
+    );
+  }
+
+  preventDefaults(e: Event): void {
+    e.preventDefault();
+    e.stopPropagation();
   }
 
   updateView(): void {
@@ -166,6 +193,7 @@ export class ImageBlock extends Block {
       this.imagePanel.style.display = 'none';
       this.uploadPanel.style.display = 'block';
     }
+    this.debouncedTriggerOnChange(); // Trigger onChange
   }
 
   focus(): void {

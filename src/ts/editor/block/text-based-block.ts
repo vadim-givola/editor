@@ -2,19 +2,17 @@ import { Block } from "./block";
 import { Editor } from "../editor";
 
 export abstract class TextBasedBlock extends Block {
-  textarea: HTMLTextAreaElement;
+  textarea: HTMLTextAreaElement | null = null; // textarea is now nullable
 
-  private debouncedTriggerOnChange: () => void;
+  protected debouncedTriggerOnChange: () => void;
 
   constructor(public editor: Editor) {
     super(editor);
-    
+
     // Debounce the onChange method with a 300ms delay
     this.debouncedTriggerOnChange = this.debounce(() => {
       this.triggerOnChange();
     }, 300);
-
-    this.enableInputListener(); // Add the input listener
   }
 
   /**
@@ -45,15 +43,17 @@ export abstract class TextBasedBlock extends Block {
    * Automatically resizes the textarea to fit its content
    */
   enableAutoresizing(): void {
+    if (!this.textarea) {
+      return;
+    }
+
     this.textarea.addEventListener("input", () => {
-      // Don't resize the textarea to be smaller than 10px
-      if (this.textarea.scrollHeight > 10) {
-        this.textarea.style.height = "auto";
-        this.textarea.style.height = `${this.textarea.scrollHeight}px`;
+      if (this.textarea!.scrollHeight > 10) {
+        this.textarea!.style.height = "auto";
+        this.textarea!.style.height = `${this.textarea!.scrollHeight}px`;
       }
     });
 
-    // Trigger a dummy event to set the correct height after the DOM is initialized
     window.addEventListener(
       "DOMContentLoaded",
       () => {
@@ -65,15 +65,6 @@ export abstract class TextBasedBlock extends Block {
     setTimeout(() => {
       this.redraw();
     }, 1);
-  }
-
-  /**
-   * Enables input listener to trigger the editor's onChange event with debounce
-   */
-  private enableInputListener() {
-    this.textarea.addEventListener("input", () => {
-      this.debouncedTriggerOnChange();
-    });
   }
 
   /**
